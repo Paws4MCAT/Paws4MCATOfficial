@@ -1,0 +1,71 @@
+[
+  {
+    "id": 1,
+    "question": "What is the main function of red blood cells?",
+    "choices": [
+      "Carry oxygen",
+      "Fight bacteria",
+      "Digest food",
+      "Produce hormones"
+    ],
+    "correctAnswer": "Carry oxygen",
+    "explanation": "Red blood cells contain hemoglobin, which helps transport oxygen around the body.",
+    "difficulty": "easy",
+    "category": "biology"
+  },
+  {
+    "id": 2,
+    "question": "What type of bond forms when electrons are shared between atoms?",
+    "choices": [
+      "Ionic bond",
+      "Covalent bond",
+      "Hydrogen bond",
+      "Metallic bond"
+    ],
+    "correctAnswer": "Covalent bond",
+    "explanation": "A covalent bond is created when atoms share electrons.",
+    "difficulty": "easy",
+    "category": "chemistry"
+  },
+  {
+    "id": 3,
+    "question": "Which part of the neuron receives incoming signals?",
+    "choices": ["Axon", "Dendrite", "Myelin sheath", "Synapse"],
+    "correctAnswer": "Dendrite",
+    "explanation": "Dendrites are branch-like structures that receive signals from other neurons.",
+    "difficulty": "medium",
+    "category": "psychology"
+  },
+  {
+    "id": 4,
+    "question": "In a neutralization reaction, an acid reacts with a base to form:",
+    "choices": ["Salt and water", "Gas and water", "Only salt", "Only water"],
+    "correctAnswer": "Salt and water",
+    "explanation": "Neutralization usually produces a salt and water.",
+    "difficulty": "medium",
+    "category": "chemistry"
+  },
+  {
+    "id": 5,
+    "question": "What happens to enzyme activity if temperature becomes too high?",
+    "choices": [
+      "It always increases",
+      "It stays exactly the same",
+      "The enzyme can denature and lose function",
+      "The enzyme turns into a lipid"
+    ],
+    "correctAnswer": "The enzyme can denature and lose function",
+    "explanation": "Very high temperatures can change enzyme shape, which reduces function.",
+    "difficulty": "hard",
+    "category": "biology"
+  },
+  {
+    "id": 6,
+    "question": "If velocity changes over time, which quantity is non-zero?",
+    "choices": ["Mass", "Density", "Acceleration", "Pressure"],
+    "correctAnswer": "Acceleration",
+    "explanation": "Acceleration is the rate of change of velocity.",
+    "difficulty": "hard",
+    "category": "physics"
+  }
+]
