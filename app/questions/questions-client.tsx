@@ -289,6 +289,7 @@ export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
             alt="Paws4MCAT logo"
             width={900}
             height={560}
+            priority
             className="mx-auto mb-3 h-auto w-full max-w-xs sm:max-w-sm"
           />
           <h1 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">
