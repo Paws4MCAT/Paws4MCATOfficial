@@ -26,3 +26,11 @@ export type AnswerRecord = {
   subcategory: string;
   timestamp: number;
 };
+
+export type PracticeProgress = {
+  selectedCategory: McatCategory | "all";
+  currentQuestionIndex: number;
+  selectedAnswer: string | null;
+  answerHistory: AnswerRecord[];
+  updatedAt?: string;
+};

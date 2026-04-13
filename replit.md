@@ -16,4 +16,10 @@ Paws4MCAT is a Next.js application for multilingual MCAT practice questions. It 
 - The workflow supplies Replit-compatible Next.js host and port flags without changing the protected package scripts.
 - Next.js development resources are allowlisted for the active Replit preview domain through `REPLIT_DEV_DOMAIN`.
 - No `instrumentation.ts` or `instrumentation.js` file is present.
-- No required environment variables were found in the current source scan.
+- PostgreSQL is used for user accounts, server sessions, and saved practice progress.
+
+# Data Model
+
+- `users`: stores account identity and scrypt password hashes.
+- `user_sessions`: stores hashed session tokens with expiration; browser cookies are HTTP-only.
+- `practice_progress`: stores each user's selected section, current question, selected answer, and answer history.

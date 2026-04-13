@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import type { FormEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 
 import { LanguageToggle } from "@/components/LanguageToggle";
@@ -8,7 +9,7 @@ import { SurfaceCard } from "@/components/SurfaceCard";
 import { QuestionCard } from "@/components/QuestionCard";
 import { filterQuestions } from "@/lib/filterQuestions";
 import { Language } from "@/lib/language";
-import { AnswerRecord, McatCategory, Question } from "@/lib/types";
+import type { AnswerRecord, McatCategory, PracticeProgress, Question } from "@/lib/types";
 
 const categoryOptions: Array<{ value: McatCategory | "all"; label: string }> = [
   { value: "all", label: "All Sections" },
@@ -29,12 +30,160 @@ type QuestionsClientProps = {
   initialQuestions: Question[];
 };
 
+type AuthUser = {
+  id: string;
+  username: string;
+  displayName: string;
+};
+
+type AuthMode = "login" | "register";
+
+type SaveState = "idle" | "saving" | "saved" | "error";
+
+function AuthPanel({
+  user,
+  authMode,
+  username,
+  password,
+  authError,
+  isAuthSubmitting,
+  saveState,
+  onAuthModeChange,
+  onUsernameChange,
+  onPasswordChange,
+  onSubmit,
+  onLogout,
+}: {
+  user: AuthUser | null;
+  authMode: AuthMode;
+  username: string;
+  password: string;
+  authError: string | null;
+  isAuthSubmitting: boolean;
+  saveState: SaveState;
+  onAuthModeChange: (mode: AuthMode) => void;
+  onUsernameChange: (value: string) => void;
+  onPasswordChange: (value: string) => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  onLogout: () => void;
+}) {
+  const saveLabel =
+    saveState === "saving"
+      ? "Saving progress..."
+      : saveState === "saved"
+        ? "Progress saved"
+        : saveState === "error"
+          ? "Progress could not be saved"
+          : "Progress autosaves while logged in";
+
+  if (user) {
+    return (
+      <SurfaceCard className="mb-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold text-slate-900">
+              Signed in as {user.displayName || user.username}
+            </p>
+            <p className="mt-1 text-xs font-medium text-slate-500">{saveLabel}</p>
+          </div>
+          <button
+            type="button"
+            onClick={onLogout}
+            className={[
+              "rounded-full border border-slate-300 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700",
+              "transition duration-200 ease-out motion-reduce:transition-none",
+              "hover:bg-white hover:shadow-sm active:scale-[0.99]",
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+            ].join(" ")}
+          >
+            Log out
+          </button>
+        </div>
+      </SurfaceCard>
+    );
+  }
+
+  return (
+    <SurfaceCard className="mb-6">
+      <div className="mb-4 flex rounded-full bg-slate-100 p-1">
+        <button
+          type="button"
+          onClick={() => onAuthModeChange("login")}
+          className={[
+            "flex-1 rounded-full px-4 py-2 text-sm font-semibold transition duration-200 ease-out motion-reduce:transition-none",
+            authMode === "login" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-800",
+          ].join(" ")}
+        >
+          Log in
+        </button>
+        <button
+          type="button"
+          onClick={() => onAuthModeChange("register")}
+          className={[
+            "flex-1 rounded-full px-4 py-2 text-sm font-semibold transition duration-200 ease-out motion-reduce:transition-none",
+            authMode === "register" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-800",
+          ].join(" ")}
+        >
+          Create account
+        </button>
+      </div>
+
+      <form onSubmit={onSubmit} className="grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+        <label className="block">
+          <span className="mb-1 block text-sm font-semibold text-slate-700">Username</span>
+          <input
+            value={username}
+            onChange={(event) => onUsernameChange(event.target.value)}
+            autoComplete="username"
+            className="w-full rounded-xl border border-slate-300/80 bg-white/90 px-3 py-2.5 text-sm font-medium text-slate-900 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+            placeholder="student123"
+          />
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-sm font-semibold text-slate-700">Password</span>
+          <input
+            value={password}
+            onChange={(event) => onPasswordChange(event.target.value)}
+            type="password"
+            autoComplete={authMode === "register" ? "new-password" : "current-password"}
+            className="w-full rounded-xl border border-slate-300/80 bg-white/90 px-3 py-2.5 text-sm font-medium text-slate-900 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+            placeholder="8+ characters"
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={isAuthSubmitting}
+          className={[
+            "rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2.5 text-sm font-semibold text-white",
+            "transition duration-200 ease-out motion-reduce:transition-none",
+            "hover:scale-[1.02] hover:shadow-md active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60",
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+          ].join(" ")}
+        >
+          {isAuthSubmitting ? "Please wait..." : authMode === "register" ? "Create" : "Log in"}
+        </button>
+      </form>
+
+      {authError && <p className="mt-3 text-sm font-semibold text-red-700">{authError}</p>}
+      <p className="mt-3 text-xs leading-relaxed text-slate-500">
+        Create an account to save your question position, answers, and accuracy across visits.
+      </p>
+    </SurfaceCard>
+  );
+}
+
 function QuestionsSession({
   questions,
   language,
+  selectedCategory,
+  initialProgress,
+  onProgressChange,
 }: {
   questions: Question[];
   language: Language;
+  selectedCategory: McatCategory | "all";
+  initialProgress: PracticeProgress | null;
+  onProgressChange: (progress: PracticeProgress) => void;
 }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -50,6 +199,29 @@ function QuestionsSession({
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (!initialProgress || initialProgress.selectedCategory !== selectedCategory) return;
+
+    setCurrentQuestionIndex(Math.min(initialProgress.currentQuestionIndex, Math.max(questions.length - 1, 0)));
+    setSelectedAnswer(initialProgress.selectedAnswer);
+    setAnswerHistory(initialProgress.answerHistory);
+    setFeedbackPopup(null);
+    setIsFeedbackVisible(false);
+  }, [initialProgress, questions.length, selectedCategory]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      onProgressChange({
+        selectedCategory,
+        currentQuestionIndex,
+        selectedAnswer,
+        answerHistory,
+      });
+    }, 350);
+
+    return () => clearTimeout(timeout);
+  }, [answerHistory, currentQuestionIndex, onProgressChange, selectedAnswer, selectedCategory]);
 
   const currentQuestion = useMemo(
     () => questions[currentQuestionIndex],
@@ -106,7 +278,6 @@ function QuestionsSession({
     }
     popupTimeoutRef.current = setTimeout(() => {
       setIsFeedbackVisible(false);
-      // Allow exit animation to finish before unmount.
       setTimeout(() => setFeedbackPopup(null), 220);
     }, 3000);
   };
@@ -267,6 +438,15 @@ function QuestionsSession({
 export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
   const [language, setLanguage] = useState<Language>("en");
   const [selectedCategory, setSelectedCategory] = useState<McatCategory | "all">("all");
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [authMode, setAuthMode] = useState<AuthMode>("login");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [isAuthSubmitting, setIsAuthSubmitting] = useState(false);
+  const [initialProgress, setInitialProgress] = useState<PracticeProgress | null>(null);
+  const [isProgressReady, setIsProgressReady] = useState(false);
+  const [saveState, setSaveState] = useState<SaveState>("idle");
 
   const questions = useMemo(
     () =>
@@ -275,6 +455,114 @@ export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
         difficulty: "all",
       }),
     [initialQuestions, selectedCategory],
+  );
+
+  const loadProgress = useCallback(async () => {
+    setIsProgressReady(false);
+
+    try {
+      const response = await fetch("/api/progress", { cache: "no-store" });
+      if (!response.ok) return;
+
+      const data = (await response.json()) as { progress: PracticeProgress | null };
+      if (data.progress) {
+        setInitialProgress(data.progress);
+        setSelectedCategory(data.progress.selectedCategory);
+        setSaveState("saved");
+      }
+    } finally {
+      setIsProgressReady(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadUser() {
+      const response = await fetch("/api/auth/me", { cache: "no-store" });
+      if (!response.ok || !isMounted) return;
+
+      const data = (await response.json()) as { user: AuthUser | null };
+      setUser(data.user);
+      if (data.user) {
+        await loadProgress();
+      } else {
+        setIsProgressReady(false);
+      }
+    }
+
+    loadUser().catch(() => {
+      if (isMounted) setAuthError("Unable to load account status.");
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [loadProgress]);
+
+  const handleAuthSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setAuthError(null);
+    setIsAuthSubmitting(true);
+
+    try {
+      const response = await fetch(`/api/auth/${authMode}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = (await response.json()) as { user?: AuthUser; error?: string };
+
+      if (!response.ok || !data.user) {
+        setAuthError(data.error ?? "Unable to continue.");
+        return;
+      }
+
+      setUser(data.user);
+      setUsername("");
+      setPassword("");
+      setInitialProgress(null);
+      setIsProgressReady(false);
+      setSaveState("idle");
+      await loadProgress();
+    } catch {
+      setAuthError("Unable to reach the account service.");
+    } finally {
+      setIsAuthSubmitting(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    setUser(null);
+    setInitialProgress(null);
+    setIsProgressReady(false);
+    setSaveState("idle");
+  };
+
+  const handleCategoryChange = (category: McatCategory | "all") => {
+    setSelectedCategory(category);
+    setInitialProgress(null);
+  };
+
+  const handleProgressChange = useCallback(
+    async (progress: PracticeProgress) => {
+      if (!user || !isProgressReady) return;
+
+      setSaveState("saving");
+      try {
+        const response = await fetch("/api/progress", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(progress),
+        });
+
+        setSaveState(response.ok ? "saved" : "error");
+      } catch {
+        setSaveState("error");
+      }
+    },
+    [isProgressReady, user],
   );
 
   return (
@@ -299,6 +587,21 @@ export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
         </div>
       </header>
 
+      <AuthPanel
+        user={user}
+        authMode={authMode}
+        username={username}
+        password={password}
+        authError={authError}
+        isAuthSubmitting={isAuthSubmitting}
+        saveState={saveState}
+        onAuthModeChange={setAuthMode}
+        onUsernameChange={setUsername}
+        onPasswordChange={setPassword}
+        onSubmit={handleAuthSubmit}
+        onLogout={handleLogout}
+      />
+
       <SurfaceCard className="mb-6">
         <label
           htmlFor="section-filter"
@@ -310,7 +613,7 @@ export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
           id="section-filter"
           value={selectedCategory}
           onChange={(event) =>
-            setSelectedCategory(event.target.value as McatCategory | "all")
+            handleCategoryChange(event.target.value as McatCategory | "all")
           }
           className={[
             "w-full rounded-xl border border-slate-300/80 bg-white/90 px-3 py-2.5 text-sm font-medium text-slate-900",
@@ -326,11 +629,13 @@ export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
         </select>
       </SurfaceCard>
 
-      {/* Remount session per category to reset state (lint-safe). */}
       <QuestionsSession
         key={selectedCategory}
         questions={questions}
         language={language}
+        selectedCategory={selectedCategory}
+        initialProgress={initialProgress}
+        onProgressChange={handleProgressChange}
       />
     </main>
   );
