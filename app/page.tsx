@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
+import { SurfaceCard } from "@/components/SurfaceCard";
 
 export default function Home() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-4xl items-center justify-center px-4 py-12">
-      <section className="w-full rounded-3xl border border-blue-100 bg-white p-8 text-center shadow-xl shadow-blue-100/50 sm:p-12">
+      <SurfaceCard tone="brand" className="w-full p-8 text-center sm:p-12 paws-enter">
         <Image
           src="/paws4mcat-logo-transparent.png"
           alt="Paws4MCAT logo"
@@ -23,11 +24,16 @@ export default function Home() {
 
         <Link
           href="/questions"
-          className="mt-8 inline-flex rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-7 py-3 font-semibold text-white transition hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+          className={[
+            "mt-8 inline-flex rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-7 py-3 font-semibold text-white",
+            "transition duration-200 ease-out motion-reduce:transition-none",
+            "hover:scale-[1.02] hover:shadow-lg active:scale-[0.99]",
+            "focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-transparent",
+          ].join(" ")}
         >
           Start Practicing
         </Link>
-      </section>
+      </SurfaceCard>
     </main>
   );
 }

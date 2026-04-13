@@ -1,0 +1,41 @@
+[
+  {
+    "id": "bb-bio-001",
+    "question": {
+      "en": "Which organelle is known as the powerhouse of the cell?",
+      "es": "¿Qué orgánulo se conoce como la central energética de la célula?"
+    },
+    "choices": ["Nucleus", "Mitochondrion", "Golgi apparatus", "Lysosome"],
+    "correctAnswer": "Mitochondrion",
+    "explanation": "Mitochondria generate ATP through cellular respiration.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+  {
+    "id": "bb-bio-002",
+    "question": {
+      "en": "What process describes movement of water across a semipermeable membrane?",
+      "es": "¿Qué proceso describe el movimiento del agua a través de una membrana semipermeable?"
+    },
+    "choices": ["Diffusion", "Osmosis", "Active transport", "Endocytosis"],
+    "correctAnswer": "Osmosis",
+    "explanation": "Osmosis is the passive movement of water across a selectively permeable membrane.",
+    "difficulty": "medium",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+  {
+    "id": "bb-bioc-001",
+    "question": {
+      "en": "Which enzyme class transfers phosphate groups from ATP to a substrate?",
+      "es": "¿Qué clase de enzima transfiere grupos fosfato desde ATP a un sustrato?"
+    },
+    "choices": ["Hydrolase", "Ligase", "Kinase", "Isomerase"],
+    "correctAnswer": "Kinase",
+    "explanation": "Kinases catalyze phosphorylation reactions, commonly using ATP as phosphate donor.",
+    "difficulty": "hard",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  }
+]

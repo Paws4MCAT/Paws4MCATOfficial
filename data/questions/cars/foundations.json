@@ -1,0 +1,56 @@
+[
+  {
+    "id": "cars-hum-001",
+    "question": {
+      "en": "A passage argues that modern art values emotion over realism. Which statement best matches the author's likely view?",
+      "es": "Un pasaje argumenta que el arte moderno valora la emoción sobre el realismo. ¿Qué afirmación coincide mejor con la visión probable del autor?"
+    },
+    "choices": [
+      "Art should only copy nature exactly",
+      "Emotional impact can be more important than precise representation",
+      "Realism and emotion are unrelated in all art",
+      "Modern art avoids all meaning"
+    ],
+    "correctAnswer": "Emotional impact can be more important than precise representation",
+    "explanation": "The best choice restates the author's central claim in different words.",
+    "difficulty": "medium",
+    "category": "cars",
+    "subcategory": "humanities"
+  },
+  {
+    "id": "cars-hum-002",
+    "question": {
+      "en": "If an author presents two opposing theories and then defends one, what is the most likely purpose?",
+      "es": "Si un autor presenta dos teorías opuestas y luego defiende una, ¿cuál es el propósito más probable?"
+    },
+    "choices": [
+      "To confuse the reader",
+      "To ignore counterarguments",
+      "To compare viewpoints before building an argument",
+      "To summarize unrelated topics"
+    ],
+    "correctAnswer": "To compare viewpoints before building an argument",
+    "explanation": "Presenting alternatives first often strengthens the final argument.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "humanities"
+  },
+  {
+    "id": "cars-ss-001",
+    "question": {
+      "en": "A social science passage links urban design to public health outcomes. Which inference is most reasonable?",
+      "es": "Un pasaje de ciencias sociales relaciona el diseño urbano con resultados de salud pública. ¿Qué inferencia es más razonable?"
+    },
+    "choices": [
+      "City planning can influence health behaviors",
+      "Health outcomes are unrelated to environment",
+      "Only genetics determines health",
+      "Urban policies never affect daily life"
+    ],
+    "correctAnswer": "City planning can influence health behaviors",
+    "explanation": "The passage's link suggests that environment and policy shape behavior and outcomes.",
+    "difficulty": "medium",
+    "category": "cars",
+    "subcategory": "social-sciences"
+  }
+]

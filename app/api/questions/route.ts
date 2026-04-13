@@ -1,22 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import rawQuestions from "@/data/questions.json";
-import { Difficulty, Question } from "@/lib/types";
+import { filterQuestions, loadAllQuestions } from "@/lib/questions";
+import { Difficulty, McatCategory } from "@/lib/types";
 
-export function GET(request: NextRequest) {
-  // We read query params from the URL (example: ?difficulty=easy).
-  const { searchParams } = new URL(request.url);
-  const difficulty = searchParams.get("difficulty") as Difficulty | null;
+export async function GET(request: NextRequest) {
+  try {
+    const searchParams = request.nextUrl.searchParams;
+    const difficulty = searchParams.get("difficulty") as Difficulty | "all" | null;
+    const category = searchParams.get("category") as McatCategory | "all" | null;
 
-  const questions = rawQuestions as Question[];
+    const allQuestions = await loadAllQuestions();
+    const filteredQuestions = filterQuestions(allQuestions, {
+      category: category ?? "all",
+      difficulty: difficulty ?? "all",
+    });
 
-  if (!difficulty) {
-    return NextResponse.json(questions);
+    return NextResponse.json(filteredQuestions);
+  } catch (error) {
+    console.error("Failed to load questions in API route:", error);
+    return NextResponse.json({ error: "Failed to load questions." }, { status: 500 });
   }
-
-  const filteredQuestions = questions.filter(
-    (question) => question.difficulty === difficulty,
-  );
-
-  return NextResponse.json(filteredQuestions);
 }

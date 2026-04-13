@@ -1,0 +1,59 @@
+[
+  {
+    "id": "cp-gc-001",
+    "question": {
+      "en": "Which factor increases the rate of a chemical reaction without being consumed?",
+      "es": "¿Qué factor aumenta la velocidad de una reacción química sin consumirse?"
+    },
+    "choices": ["Catalyst", "Product", "Solvent", "Precipitate"],
+    "correctAnswer": "Catalyst",
+    "explanation": "A catalyst lowers activation energy and speeds up the reaction.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "general-chemistry"
+  },
+  {
+    "id": "cp-phys-001",
+    "question": {
+      "en": "If net force on an object is zero, what can be true about its motion?",
+      "es": "Si la fuerza neta sobre un objeto es cero, ¿qué puede ser cierto sobre su movimiento?"
+    },
+    "choices": [
+      "It must speed up",
+      "It must slow down",
+      "It can move at constant velocity",
+      "It must be at rest only"
+    ],
+    "correctAnswer": "It can move at constant velocity",
+    "explanation": "By Newton's first law, zero net force means constant velocity (which may include rest).",
+    "difficulty": "medium",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+  {
+    "id": "cp-oc-001",
+    "question": {
+      "en": "Which functional group defines an alcohol?",
+      "es": "¿Qué grupo funcional define a un alcohol?"
+    },
+    "choices": ["Carboxyl", "Hydroxyl", "Carbonyl", "Amino"],
+    "correctAnswer": "Hydroxyl",
+    "explanation": "Alcohols are characterized by the hydroxyl (-OH) group.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "organic-chemistry"
+  },
+  {
+    "id": "cp-bioc-001",
+    "question": {
+      "en": "Which macromolecule is primarily responsible for storing genetic information?",
+      "es": "¿Qué macromolécula es la principal responsable de almacenar información genética?"
+    },
+    "choices": ["Protein", "Lipid", "Nucleic acid", "Carbohydrate"],
+    "correctAnswer": "Nucleic acid",
+    "explanation": "DNA and RNA are nucleic acids that store and transmit genetic information.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "biochemistry"
+  }
+]

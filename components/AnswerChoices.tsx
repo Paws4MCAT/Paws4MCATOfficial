@@ -16,29 +16,52 @@ export function AnswerChoices({
   isLocked,
 }: AnswerChoicesProps) {
   return (
-    <div className="mt-5 grid gap-3">
-      {choices.map((choice) => {
+    <div className="mt-6 grid gap-3">
+      {choices.map((choice, index) => {
         const isSelected = selectedAnswer === choice;
         const isCorrect = choice === correctAnswer;
 
+        // Visual states: default → selected → (locked) correct/incorrect reveal.
         let styleClass =
-          "border-slate-200 bg-white text-slate-800 hover:border-blue-400 hover:bg-blue-50";
+          "border-slate-200 bg-white/90 text-slate-900 hover:border-slate-300 hover:bg-white";
 
-        if (isLocked && isSelected && isCorrect) {
-          styleClass = "border-green-200 bg-green-50 text-green-700";
+        if (!isLocked && isSelected) {
+          styleClass =
+            "border-blue-200 bg-blue-50/80 text-slate-900 ring-2 ring-blue-200";
+        } else if (isLocked && isSelected && isCorrect) {
+          styleClass =
+            "border-green-200 bg-green-50 text-green-800 ring-2 ring-green-200";
         } else if (isLocked && isSelected && !isCorrect) {
-          styleClass = "border-red-200 bg-red-50 text-red-700";
+          styleClass =
+            "border-red-200 bg-red-50 text-red-800 ring-2 ring-red-200";
         } else if (isLocked && isCorrect) {
-          styleClass = "border-green-200 bg-green-50 text-green-700";
+          // Reveal the correct choice subtly even if it wasn't selected.
+          styleClass =
+            "border-green-200 bg-green-50/60 text-green-800";
         }
 
         return (
           <button
-            key={choice}
+            key={`${index}-${choice}`}
             type="button"
             disabled={isLocked}
             onClick={() => onSelectAnswer(choice)}
-            className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition ${styleClass} disabled:cursor-not-allowed`}
+            aria-pressed={isSelected}
+            className={[
+              // Card feel + consistent spacing (8px rhythm).
+              "group relative rounded-2xl border px-4 py-3 text-left text-sm font-semibold",
+              // Micro-interactions: subtle lift + shadow, press feedback.
+              "transition duration-200 ease-out motion-reduce:transition-none",
+              !isLocked &&
+                "hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.99]",
+              // Accessibility: keep focus visible and consistent.
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+              // Disabled is handled via isLocked; still allow correct reveal styling.
+              isLocked ? "cursor-not-allowed" : "cursor-pointer",
+              styleClass,
+            ]
+              .filter(Boolean)
+              .join(" ")}
           >
             {choice}
           </button>

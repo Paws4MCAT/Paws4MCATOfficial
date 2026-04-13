@@ -1,0 +1,46 @@
+[
+  {
+    "id": "ps-psych-001",
+    "question": {
+      "en": "Which type of learning occurs when behavior is shaped by rewards and punishments?",
+      "es": "¿Qué tipo de aprendizaje ocurre cuando la conducta se moldea por recompensas y castigos?"
+    },
+    "choices": [
+      "Classical conditioning",
+      "Operant conditioning",
+      "Observational learning",
+      "Latent learning"
+    ],
+    "correctAnswer": "Operant conditioning",
+    "explanation": "Operant conditioning uses reinforcement and punishment to influence behavior.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+  {
+    "id": "ps-psych-002",
+    "question": {
+      "en": "In memory models, which store holds information briefly before attention is applied?",
+      "es": "En los modelos de memoria, ¿qué almacén retiene información brevemente antes de aplicar atención?"
+    },
+    "choices": ["Sensory memory", "Long-term memory", "Procedural memory", "Semantic memory"],
+    "correctAnswer": "Sensory memory",
+    "explanation": "Sensory memory briefly captures incoming sensory information before processing.",
+    "difficulty": "medium",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+  {
+    "id": "ps-soc-001",
+    "question": {
+      "en": "What sociological concept describes expected behaviors tied to a social position?",
+      "es": "¿Qué concepto sociológico describe conductas esperadas asociadas a una posición social?"
+    },
+    "choices": ["Role", "Normative deviance", "Social capital", "Cultural lag"],
+    "correctAnswer": "Role",
+    "explanation": "A social role is a set of expected behaviors associated with a status.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "sociology"
+  }
+]

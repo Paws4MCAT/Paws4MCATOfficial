@@ -1,4 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) project for MCAT question practice.
+
+## Core Data System
+
+Questions are grouped by MCAT section:
+
+```txt
+data/questions/
+  cp/    -> Chemical & Physical Foundations
+  bb/    -> Biological & Biochemical Foundations
+  ps/    -> Psychological & Social Foundations
+  cars/  -> Critical Analysis and Reasoning Skills
+```
+
+Each folder contains one or more `.json` files. Every question follows this shape:
+
+```ts
+{
+  id: string,
+  question: {
+    en: string,
+    es: string
+  },
+  choices: string[],
+  correctAnswer: string,
+  explanation: string,
+  difficulty: "easy" | "medium" | "hard",
+  category: "cp" | "bb" | "ps" | "cars",
+  subcategory: string
+}
+```
+
+Questions are loaded on the server from all section folders, combined into one array, and filtered through `app/api/questions/route.ts`.
 
 ## Getting Started
 

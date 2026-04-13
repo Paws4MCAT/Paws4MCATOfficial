@@ -6,22 +6,133 @@
   --bg-gradient-start: #e7edff;
   --bg-gradient-mid: #f4f7ff;
   --bg-gradient-end: #f4f7ff;
+
+  /* Premium lighting + depth tokens */
+  --paws-ambient-1: rgba(99, 102, 241, 0.14);  /* indigo glow */
+  --paws-ambient-2: rgba(59, 130, 246, 0.10);  /* blue glow */
+  --paws-ambient-3: rgba(168, 85, 247, 0.08);  /* purple glow */
+  --paws-surface: rgba(255, 255, 255, 0.90);
+  --paws-surface-strong: rgba(255, 255, 255, 0.94);
+  --paws-border: rgba(15, 23, 42, 0.14);
+  --paws-highlight: rgba(255, 255, 255, 0.75);
+  --paws-shadow-1: 0 1px 0 rgba(15, 23, 42, 0.04);
+  --paws-shadow-2: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --paws-shadow-3: 0 30px 70px rgba(15, 23, 42, 0.06);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
 }
 
 body {
-  background: radial-gradient(
-    circle at top,
-    var(--bg-gradient-start) 0%,
-    var(--bg-gradient-mid) 45%,
-    var(--bg-gradient-end) 100%
-  );
+  /* Background layer: subtle, professional ambient lighting */
+  background:
+    radial-gradient(900px 520px at 18% 10%, var(--paws-ambient-1), transparent 60%),
+    radial-gradient(760px 520px at 82% 16%, var(--paws-ambient-2), transparent 62%),
+    radial-gradient(820px 560px at 55% -10%, var(--paws-ambient-3), transparent 64%),
+    radial-gradient(
+      circle at top,
+      var(--bg-gradient-start) 0%,
+      var(--bg-gradient-mid) 45%,
+      var(--bg-gradient-end) 100%
+    );
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Ambient “grain” overlay (very subtle; adds premium depth). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 700px at 50% -10%, rgba(255, 255, 255, 0.55), transparent 60%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(15, 23, 42, 0.012) 0px,
+      rgba(15, 23, 42, 0.012) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+  z-index: 0;
+}
+
+/* Ensure app content sits above the lighting overlays. */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Smoother, more “product” feeling defaults (no layout changes). */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.18);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Page/component entrance micro-motion (subtle, production-safe). */
+.paws-enter {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .paws-enter {
+    animation: paws-fade-up 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@keyframes paws-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Surface system: consistent premium cards/panels (used via SurfaceCard). */
+.paws-surface {
+  position: relative;
+  overflow: hidden;
+  background: var(--paws-surface);
+  border: 1px solid var(--paws-border);
+  box-shadow: var(--paws-shadow-1), var(--paws-shadow-2);
+  backdrop-filter: blur(10px);
+}
+
+.paws-surface--brand {
+  background: var(--paws-surface-strong);
+  box-shadow: var(--paws-shadow-1), var(--paws-shadow-2), var(--paws-shadow-3);
+}
+
+/* Inner highlight to simulate top light source (subtle 3D). */
+.paws-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--paws-highlight) 0%,
+    rgba(255, 255, 255, 0.0) 35%
+  );
+  opacity: 0.22;
 }
