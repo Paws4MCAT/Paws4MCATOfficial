@@ -26,5 +26,6 @@ Paws4MCAT is a Next.js application for multilingual MCAT practice questions. It 
 
 # Routes
 
+- `/`: login/create-account entry point. Signed-in students see a dashboard summary first, then can continue to questions.
 - `/questions`: practice experience with login/create-account controls and autosaved progress.
 - `/dashboard`: signed-in student dashboard showing overall accuracy, section accuracy, and recent answer history.
