@@ -22,17 +22,30 @@ export default function Home() {
           MCAT Success Across Languages
         </p>
 
-        <Link
-          href="/questions"
-          className={[
-            "mt-8 inline-flex rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-7 py-3 font-semibold text-white",
-            "transition duration-200 ease-out motion-reduce:transition-none",
-            "hover:scale-[1.02] hover:shadow-lg active:scale-[0.99]",
-            "focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-transparent",
-          ].join(" ")}
-        >
-          Start Practicing
-        </Link>
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link
+            href="/questions"
+            className={[
+              "inline-flex rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-7 py-3 font-semibold text-white",
+              "transition duration-200 ease-out motion-reduce:transition-none",
+              "hover:scale-[1.02] hover:shadow-lg active:scale-[0.99]",
+              "focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-transparent",
+            ].join(" ")}
+          >
+            Start Practicing
+          </Link>
+          <Link
+            href="/dashboard"
+            className={[
+              "inline-flex rounded-full border border-slate-300 bg-white/80 px-7 py-3 font-semibold text-slate-700",
+              "transition duration-200 ease-out motion-reduce:transition-none",
+              "hover:bg-white hover:shadow-md active:scale-[0.99]",
+              "focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-transparent",
+            ].join(" ")}
+          >
+            View Dashboard
+          </Link>
+        </div>
       </SurfaceCard>
     </main>
   );

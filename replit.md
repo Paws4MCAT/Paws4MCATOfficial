@@ -23,3 +23,8 @@ Paws4MCAT is a Next.js application for multilingual MCAT practice questions. It 
 - `users`: stores account identity and scrypt password hashes.
 - `user_sessions`: stores hashed session tokens with expiration; browser cookies are HTTP-only.
 - `practice_progress`: stores each user's selected section, current question, selected answer, and answer history.
+
+# Routes
+
+- `/questions`: practice experience with login/create-account controls and autosaved progress.
+- `/dashboard`: signed-in student dashboard showing overall accuracy, section accuracy, and recent answer history.

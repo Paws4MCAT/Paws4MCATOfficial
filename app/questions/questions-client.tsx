@@ -3,6 +3,7 @@
 import type { FormEvent } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { SurfaceCard } from "@/components/SurfaceCard";
@@ -86,18 +87,31 @@ function AuthPanel({
             </p>
             <p className="mt-1 text-xs font-medium text-slate-500">{saveLabel}</p>
           </div>
-          <button
-            type="button"
-            onClick={onLogout}
-            className={[
-              "rounded-full border border-slate-300 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700",
-              "transition duration-200 ease-out motion-reduce:transition-none",
-              "hover:bg-white hover:shadow-sm active:scale-[0.99]",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
-            ].join(" ")}
-          >
-            Log out
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href="/dashboard"
+              className={[
+                "rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 text-sm font-semibold text-white",
+                "transition duration-200 ease-out motion-reduce:transition-none",
+                "hover:shadow-sm active:scale-[0.99]",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+              ].join(" ")}
+            >
+              Dashboard
+            </Link>
+            <button
+              type="button"
+              onClick={onLogout}
+              className={[
+                "rounded-full border border-slate-300 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700",
+                "transition duration-200 ease-out motion-reduce:transition-none",
+                "hover:bg-white hover:shadow-sm active:scale-[0.99]",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+              ].join(" ")}
+            >
+              Log out
+            </button>
+          </div>
         </div>
       </SurfaceCard>
     );

@@ -55,5 +55,274 @@
     "difficulty": "easy",
     "category": "cp",
     "subcategory": "biochemistry"
+  },
+  {
+    "id": "cp-gc-001",
+    "question": { "en": "What increases reaction rate without being consumed?", "es": "¿Qué aumenta la velocidad de reacción sin consumirse?" },
+    "choices": ["Catalyst", "Reactant", "Solvent", "Product"],
+    "correctAnswer": "Catalyst",
+    "explanation": "Catalysts lower activation energy without being consumed.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "general-chemistry"
+  },
+  {
+    "id": "cp-phys-002",
+    "question": { "en": "What happens to acceleration if force doubles?", "es": "¿Qué pasa con la aceleración si la fuerza se duplica?" },
+    "choices": ["Doubles", "Halves", "Stays same", "Becomes zero"],
+    "correctAnswer": "Doubles",
+    "explanation": "F = ma, so acceleration is proportional to force.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+  {
+    "id": "cp-oc-003",
+    "question": { "en": "Which functional group absorbs near 1700 cm–1 in IR?", "es": "¿Qué grupo funcional absorbe cerca de 1700 cm–1 en IR?" },
+    "choices": ["Alcohol", "Carbonyl", "Amine", "Alkane"],
+    "correctAnswer": "Carbonyl",
+    "explanation": "C=O stretches appear around 1700 cm–1.",
+    "difficulty": "medium",
+    "category": "cp",
+    "subcategory": "organic-chemistry"
+  },
+  {
+    "id": "cp-phys-004",
+    "question": { "en": "What type of energy is stored due to position?", "es": "¿Qué tipo de energía se almacena por la posición?" },
+    "choices": ["Kinetic", "Potential", "Thermal", "Electrical"],
+    "correctAnswer": "Potential",
+    "explanation": "Potential energy depends on position.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+  {
+    "id": "cp-gc-005",
+    "question": { "en": "What is pH of neutral water?", "es": "¿Cuál es el pH del agua neutral?" },
+    "choices": ["0", "7", "14", "1"],
+    "correctAnswer": "7",
+    "explanation": "Neutral water has equal H+ and OH-.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "general-chemistry"
+  },
+
+  {
+    "id": "cp-phys-006",
+    "question": { "en": "What happens to velocity if acceleration is negative?", "es": "¿Qué pasa con la velocidad si la aceleración es negativa?" },
+    "choices": ["Increases", "Decreases", "Stays same", "Zero"],
+    "correctAnswer": "Decreases",
+    "explanation": "Negative acceleration reduces velocity.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+  {
+    "id": "cp-gc-007",
+    "question": { "en": "What is the unit of energy?", "es": "¿Cuál es la unidad de energía?" },
+    "choices": ["Joule", "Newton", "Watt", "Volt"],
+    "correctAnswer": "Joule",
+    "explanation": "Energy is measured in Joules.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "general-chemistry"
+  },
+
+  {
+    "id": "cp-phys-008",
+    "question": { "en": "What force opposes motion?", "es": "¿Qué fuerza se opone al movimiento?" },
+    "choices": ["Friction", "Gravity", "Normal", "Tension"],
+    "correctAnswer": "Friction",
+    "explanation": "Friction resists motion.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+
+  {
+    "id": "cp-oc-009",
+    "question": { "en": "Which bond is strongest?", "es": "¿Cuál enlace es más fuerte?" },
+    "choices": ["Single", "Double", "Triple", "Ionic"],
+    "correctAnswer": "Triple",
+    "explanation": "Triple bonds have highest bond energy.",
+    "difficulty": "medium",
+    "category": "cp",
+    "subcategory": "organic-chemistry"
+  },
+
+  {
+    "id": "cp-phys-010",
+    "question": { "en": "What is power?", "es": "¿Qué es potencia?" },
+    "choices": ["Energy per time", "Force per time", "Work per mass", "Energy per distance"],
+    "correctAnswer": "Energy per time",
+    "explanation": "Power = energy/time.",
+    "difficulty": "medium",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+
+  {
+    "id": "cp-gc-011",
+    "question": { "en": "What determines atomic number?", "es": "¿Qué determina el número atómico?" },
+    "choices": ["Protons", "Neutrons", "Electrons", "Mass"],
+    "correctAnswer": "Protons",
+    "explanation": "Atomic number equals proton count.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "general-chemistry"
+  },
+
+  {
+    "id": "cp-phys-012",
+    "question": { "en": "What type of wave requires a medium?", "es": "¿Qué tipo de onda requiere un medio?" },
+    "choices": ["Mechanical", "Electromagnetic", "Light", "Gamma"],
+    "correctAnswer": "Mechanical",
+    "explanation": "Mechanical waves need a medium.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+
+  {
+    "id": "cp-oc-013",
+    "question": { "en": "What is the product of oxidation?", "es": "¿Qué ocurre en oxidación?" },
+    "choices": ["Loss of electrons", "Gain of electrons", "Gain of protons", "Loss of neutrons"],
+    "correctAnswer": "Loss of electrons",
+    "explanation": "Oxidation is loss of electrons.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "organic-chemistry"
+  },
+
+  {
+    "id": "cp-phys-014",
+    "question": { "en": "What is momentum?", "es": "¿Qué es el momento?" },
+    "choices": ["Mass × velocity", "Force × time", "Energy × time", "Velocity²"],
+    "correctAnswer": "Mass × velocity",
+    "explanation": "Momentum = mv.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+
+  {
+    "id": "cp-gc-015",
+    "question": { "en": "What is Avogadro's number?", "es": "¿Cuál es el número de Avogadro?" },
+    "choices": ["6.02×10^23", "3.14", "9.8", "1.6×10^-19"],
+    "correctAnswer": "6.02×10^23",
+    "explanation": "Defines particles per mole.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "general-chemistry"
+  },
+
+  {
+    "id": "cp-phys-016",
+    "question": { "en": "What is voltage?", "es": "¿Qué es el voltaje?" },
+    "choices": ["Energy per charge", "Charge per time", "Force per charge", "Energy per mass"],
+    "correctAnswer": "Energy per charge",
+    "explanation": "Voltage = potential difference.",
+    "difficulty": "medium",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+
+  {
+    "id": "cp-oc-017",
+    "question": { "en": "What is an isomer?", "es": "¿Qué es un isómero?" },
+    "choices": ["Same formula, different structure", "Different formula", "Same mass", "Same charge"],
+    "correctAnswer": "Same formula, different structure",
+    "explanation": "Isomers differ structurally.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "organic-chemistry"
+  },
+
+  {
+    "id": "cp-phys-018",
+    "question": { "en": "What is acceleration?", "es": "¿Qué es aceleración?" },
+    "choices": ["Change in velocity", "Change in position", "Force per mass", "Speed"],
+    "correctAnswer": "Change in velocity",
+    "explanation": "Acceleration is velocity change.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+
+  {
+    "id": "cp-gc-019",
+    "question": { "en": "What is molarity?", "es": "¿Qué es molaridad?" },
+    "choices": ["mol/L", "g/L", "mol/kg", "g/mol"],
+    "correctAnswer": "mol/L",
+    "explanation": "Molarity = moles per liter.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "general-chemistry"
+  },
+
+  {
+    "id": "cp-phys-020",
+    "question": { "en": "What force keeps planets in orbit?", "es": "¿Qué fuerza mantiene los planetas en órbita?" },
+    "choices": ["Gravity", "Friction", "Magnetism", "Electric"],
+    "correctAnswer": "Gravity",
+    "explanation": "Gravity provides centripetal force.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+
+  {
+    "id": "cp-gc-021",
+    "question": { "en": "What is oxidation state?", "es": "¿Qué es estado de oxidación?" },
+    "choices": ["Charge of atom", "Mass", "Volume", "Density"],
+    "correctAnswer": "Charge of atom",
+    "explanation": "Oxidation state reflects electron loss/gain.",
+    "difficulty": "medium",
+    "category": "cp",
+    "subcategory": "general-chemistry"
+  },
+
+  {
+    "id": "cp-phys-022",
+    "question": { "en": "What is work?", "es": "¿Qué es trabajo?" },
+    "choices": ["Force × distance", "Mass × speed", "Energy/time", "Force/time"],
+    "correctAnswer": "Force × distance",
+    "explanation": "Work = Fd.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+
+  {
+    "id": "cp-oc-023",
+    "question": { "en": "What type of reaction forms polymers?", "es": "¿Qué reacción forma polímeros?" },
+    "choices": ["Condensation", "Reduction", "Oxidation", "Hydrolysis"],
+    "correctAnswer": "Condensation",
+    "explanation": "Condensation joins monomers.",
+    "difficulty": "medium",
+    "category": "cp",
+    "subcategory": "organic-chemistry"
+  },
+
+  {
+    "id": "cp-phys-024",
+    "question": { "en": "What is frequency?", "es": "¿Qué es frecuencia?" },
+    "choices": ["Cycles per second", "Distance/time", "Energy/time", "Force/time"],
+    "correctAnswer": "Cycles per second",
+    "explanation": "Frequency = Hz.",
+    "difficulty": "easy",
+    "category": "cp",
+    "subcategory": "physics"
+  },
+
+  {
+    "id": "cp-gc-025",
+    "question": { "en": "What is equilibrium?", "es": "¿Qué es equilibrio?" },
+    "choices": ["Forward = reverse rate", "No reaction", "Only products", "Only reactants"],
+    "correctAnswer": "Forward = reverse rate",
+    "explanation": "Equilibrium means rates are equal.",
+    "difficulty": "medium",
+    "category": "cp",
+    "subcategory": "general-chemistry"
   }
 ]
