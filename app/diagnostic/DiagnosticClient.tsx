@@ -52,9 +52,16 @@ export function DiagnosticClient({ questions }: DiagnosticClientProps) {
   // On mount: check auth + existing diagnostic
   useEffect(() => {
     async function checkStatus() {
-      const meRes = await fetch("/api/auth/me", { cache: "no-store" });
-      if (!meRes.ok) {
-        // Not logged in — redirect to home
+      try {
+        const meRes = await fetch("/api/auth/me", { cache: "no-store" });
+        const meData = (await meRes.json()) as {
+          user: { id: string; username: string; displayName: string } | null;
+        };
+        if (!meData.user) {
+          window.location.href = "/";
+          return;
+        }
+      } catch {
         window.location.href = "/";
         return;
       }

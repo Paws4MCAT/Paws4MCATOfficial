@@ -9,9 +9,9 @@ import type {
 
 const CATEGORIES: McatCategory[] = ["cp", "bb", "ps", "cars"];
 
-const QUESTIONS_PER_CATEGORY = 4;
+const QUESTIONS_PER_CATEGORY = 3;
 
-const DIFFICULTY_TARGETS: Difficulty[] = ["easy", "easy", "medium", "hard"];
+const DIFFICULTY_TARGETS: Difficulty[] = ["easy", "medium", "hard"];
 
 /** Fisher-Yates shuffle — returns a new array */
 function shuffle<T>(items: T[]): T[] {

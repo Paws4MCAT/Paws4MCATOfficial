@@ -37,5 +37,475 @@
     "difficulty": "hard",
     "category": "bb",
     "subcategory": "biochemistry"
+  },
+  {
+    "id": "bb-bio-001",
+    "question": {
+      "en": "What organelle is responsible for ATP production?",
+      "es": "¿Qué organelo es responsable de la producción de ATP?"
+    },
+    "choices": [
+      "Nucleus",
+      "Mitochondria",
+      "Golgi apparatus",
+      "Ribosome"
+    ],
+    "correctAnswer": "Mitochondria",
+    "explanation": "Mitochondria generate ATP through oxidative phosphorylation.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+  {
+    "id": "bb-bio-002",
+    "question": {
+      "en": "What molecule carries genetic information?",
+      "es": "¿Qué molécula transporta información genética?"
+    },
+    "choices": [
+      "Protein",
+      "DNA",
+      "Lipid",
+      "Carbohydrate"
+    ],
+    "correctAnswer": "DNA",
+    "explanation": "DNA stores and transmits genetic information.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+  {
+    "id": "bb-bc-003",
+    "question": {
+      "en": "Which macromolecule is composed of amino acids?",
+      "es": "¿Qué macromolécula está compuesta de aminoácidos?"
+    },
+    "choices": [
+      "Carbohydrates",
+      "Lipids",
+      "Proteins",
+      "Nucleic acids"
+    ],
+    "correctAnswer": "Proteins",
+    "explanation": "Proteins are polymers of amino acids.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  },
+  {
+    "id": "bb-bio-004",
+    "question": {
+      "en": "What structure controls movement in and out of the cell?",
+      "es": "¿Qué estructura controla el movimiento dentro y fuera de la célula?"
+    },
+    "choices": [
+      "Cell membrane",
+      "Nucleus",
+      "Mitochondria",
+      "Cytoskeleton"
+    ],
+    "correctAnswer": "Cell membrane",
+    "explanation": "The membrane regulates transport into and out of the cell.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+  {
+    "id": "bb-bc-005",
+    "question": {
+      "en": "What type of bond holds amino acids together?",
+      "es": "¿Qué tipo de enlace mantiene unidos a los aminoácidos?"
+    },
+    "choices": [
+      "Hydrogen bond",
+      "Ionic bond",
+      "Peptide bond",
+      "Covalent bond"
+    ],
+    "correctAnswer": "Peptide bond",
+    "explanation": "Peptide bonds link amino acids in proteins.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  },
+
+  {
+    "id": "bb-bio-006",
+    "question": {
+      "en": "What is the function of ribosomes?",
+      "es": "¿Cuál es la función de los ribosomas?"
+    },
+    "choices": [
+      "DNA replication",
+      "Protein synthesis",
+      "Lipid storage",
+      "Energy production"
+    ],
+    "correctAnswer": "Protein synthesis",
+    "explanation": "Ribosomes translate mRNA into proteins.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+
+  {
+    "id": "bb-bc-007",
+    "question": {
+      "en": "What is the primary role of enzymes?",
+      "es": "¿Cuál es el papel principal de las enzimas?"
+    },
+    "choices": [
+      "Store energy",
+      "Catalyze reactions",
+      "Transport oxygen",
+      "Build DNA"
+    ],
+    "correctAnswer": "Catalyze reactions",
+    "explanation": "Enzymes lower activation energy.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  },
+
+  {
+    "id": "bb-bio-008",
+    "question": {
+      "en": "Which organelle modifies and packages proteins?",
+      "es": "¿Qué organelo modifica y empaqueta proteínas?"
+    },
+    "choices": [
+      "Golgi apparatus",
+      "Mitochondria",
+      "Nucleus",
+      "Lysosome"
+    ],
+    "correctAnswer": "Golgi apparatus",
+    "explanation": "Golgi modifies and distributes proteins.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+
+  {
+    "id": "bb-bc-009",
+    "question": {
+      "en": "What molecule is the main energy currency of the cell?",
+      "es": "¿Qué molécula es la principal fuente de energía celular?"
+    },
+    "choices": [
+      "ATP",
+      "DNA",
+      "Glucose",
+      "NADH"
+    ],
+    "correctAnswer": "ATP",
+    "explanation": "ATP provides energy for cellular processes.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  },
+
+  {
+    "id": "bb-bio-010",
+    "question": {
+      "en": "What type of transport requires energy?",
+      "es": "¿Qué tipo de transporte requiere energía?"
+    },
+    "choices": [
+      "Diffusion",
+      "Osmosis",
+      "Active transport",
+      "Facilitated diffusion"
+    ],
+    "correctAnswer": "Active transport",
+    "explanation": "Active transport uses ATP to move molecules.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+
+  {
+    "id": "bb-bc-011",
+    "question": {
+      "en": "What is the function of NADH?",
+      "es": "¿Cuál es la función de NADH?"
+    },
+    "choices": [
+      "Electron carrier",
+      "Protein synthesis",
+      "DNA replication",
+      "Hormone signaling"
+    ],
+    "correctAnswer": "Electron carrier",
+    "explanation": "NADH carries electrons in metabolism.",
+    "difficulty": "medium",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  },
+
+  {
+    "id": "bb-bio-012",
+    "question": {
+      "en": "What is homeostasis?",
+      "es": "¿Qué es la homeostasis?"
+    },
+    "choices": [
+      "Stable internal environment",
+      "Cell growth",
+      "Energy production",
+      "Genetic mutation"
+    ],
+    "correctAnswer": "Stable internal environment",
+    "explanation": "Homeostasis maintains internal balance.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+
+  {
+    "id": "bb-bc-013",
+    "question": {
+      "en": "Which pathway produces ATP without oxygen?",
+      "es": "¿Qué vía produce ATP sin oxígeno?"
+    },
+    "choices": [
+      "Glycolysis",
+      "Krebs cycle",
+      "Electron transport chain",
+      "Oxidative phosphorylation"
+    ],
+    "correctAnswer": "Glycolysis",
+    "explanation": "Glycolysis is anaerobic.",
+    "difficulty": "medium",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  },
+
+  {
+    "id": "bb-bio-014",
+    "question": {
+      "en": "What type of cell lacks a nucleus?",
+      "es": "¿Qué tipo de célula carece de núcleo?"
+    },
+    "choices": [
+      "Prokaryotic",
+      "Eukaryotic",
+      "Plant",
+      "Animal"
+    ],
+    "correctAnswer": "Prokaryotic",
+    "explanation": "Prokaryotes do not have a nucleus.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+
+  {
+    "id": "bb-bc-015",
+    "question": {
+      "en": "What is the function of hemoglobin?",
+      "es": "¿Cuál es la función de la hemoglobina?"
+    },
+    "choices": [
+      "Transport oxygen",
+      "Digest proteins",
+      "Store energy",
+      "Regulate pH"
+    ],
+    "correctAnswer": "Transport oxygen",
+    "explanation": "Hemoglobin carries oxygen in blood.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  },
+
+  {
+    "id": "bb-bio-016",
+    "question": {
+      "en": "What is the basic unit of life?",
+      "es": "¿Cuál es la unidad básica de la vida?"
+    },
+    "choices": [
+      "Cell",
+      "Atom",
+      "Molecule",
+      "Tissue"
+    ],
+    "correctAnswer": "Cell",
+    "explanation": "Cells are the fundamental units of life.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+
+  {
+    "id": "bb-bc-017",
+    "question": {
+      "en": "What is denaturation?",
+      "es": "¿Qué es la desnaturalización?"
+    },
+    "choices": [
+      "Loss of protein structure",
+      "Protein synthesis",
+      "DNA replication",
+      "Enzyme activation"
+    ],
+    "correctAnswer": "Loss of protein structure",
+    "explanation": "Denaturation disrupts protein folding.",
+    "difficulty": "medium",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  },
+
+  {
+    "id": "bb-bio-018",
+    "question": {
+      "en": "What is osmosis?",
+      "es": "¿Qué es la ósmosis?"
+    },
+    "choices": [
+      "Water diffusion",
+      "Protein transport",
+      "Active transport",
+      "Ion pumping"
+    ],
+    "correctAnswer": "Water diffusion",
+    "explanation": "Osmosis is passive water movement.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+
+  {
+    "id": "bb-bc-019",
+    "question": {
+      "en": "What enzyme breaks down lactose?",
+      "es": "¿Qué enzima descompone la lactosa?"
+    },
+    "choices": [
+      "Lactase",
+      "Amylase",
+      "Protease",
+      "Lipase"
+    ],
+    "correctAnswer": "Lactase",
+    "explanation": "Lactase hydrolyzes lactose.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  },
+
+  {
+    "id": "bb-bio-020",
+    "question": {
+      "en": "What is diffusion?",
+      "es": "¿Qué es la difusión?"
+    },
+    "choices": [
+      "Movement from high to low concentration",
+      "Movement with energy",
+      "Active transport",
+      "Protein synthesis"
+    ],
+    "correctAnswer": "Movement from high to low concentration",
+    "explanation": "Diffusion is passive transport.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+
+  {
+    "id": "bb-bc-021",
+    "question": {
+      "en": "What is the function of lipids?",
+      "es": "¿Cuál es la función de los lípidos?"
+    },
+    "choices": [
+      "Energy storage",
+      "Genetic coding",
+      "Protein synthesis",
+      "Cell division"
+    ],
+    "correctAnswer": "Energy storage",
+    "explanation": "Lipids store energy long-term.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  },
+
+  {
+    "id": "bb-bio-022",
+    "question": {
+      "en": "What structure contains DNA in eukaryotes?",
+      "es": "¿Qué estructura contiene ADN en eucariotas?"
+    },
+    "choices": [
+      "Nucleus",
+      "Cytoplasm",
+      "Membrane",
+      "Ribosome"
+    ],
+    "correctAnswer": "Nucleus",
+    "explanation": "DNA is housed in the nucleus.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+
+  {
+    "id": "bb-bc-023",
+    "question": {
+      "en": "What is glycolysis?",
+      "es": "¿Qué es la glucólisis?"
+    },
+    "choices": [
+      "Breakdown of glucose",
+      "Protein synthesis",
+      "DNA replication",
+      "Fat digestion"
+    ],
+    "correctAnswer": "Breakdown of glucose",
+    "explanation": "Glycolysis converts glucose to pyruvate.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biochemistry"
+  },
+
+  {
+    "id": "bb-bio-024",
+    "question": {
+      "en": "What is a gene?",
+      "es": "¿Qué es un gen?"
+    },
+    "choices": [
+      "DNA segment coding for protein",
+      "Protein",
+      "Cell structure",
+      "Hormone"
+    ],
+    "correctAnswer": "DNA segment coding for protein",
+    "explanation": "Genes encode functional products.",
+    "difficulty": "easy",
+    "category": "bb",
+    "subcategory": "biology"
+  },
+
+  {
+    "id": "bb-bc-025",
+    "question": {
+      "en": "What is the electron transport chain?",
+      "es": "¿Qué es la cadena de transporte de electrones?"
+    },
+    "choices": [
+      "ATP-producing system",
+      "DNA replication process",
+      "Protein synthesis pathway",
+      "Lipid metabolism"
+    ],
+    "correctAnswer": "ATP-producing system",
+    "explanation": "ETC generates ATP via oxidative phosphorylation.",
+    "difficulty": "medium",
+    "category": "bb",
+    "subcategory": "biochemistry"
   }
 ]
