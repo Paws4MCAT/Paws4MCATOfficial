@@ -29,6 +29,7 @@ const categoryShortLabels: Record<McatCategory, string> = {
 
 type QuestionsClientProps = {
   initialQuestions: Question[];
+  initialCategory?: McatCategory | "all";
 };
 
 type AuthUser = {
@@ -449,9 +450,9 @@ function QuestionsSession({
   );
 }
 
-export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
+export function QuestionsClient({ initialQuestions, initialCategory = "all" }: QuestionsClientProps) {
   const [language, setLanguage] = useState<Language>("en");
-  const [selectedCategory, setSelectedCategory] = useState<McatCategory | "all">("all");
+  const [selectedCategory, setSelectedCategory] = useState<McatCategory | "all">(initialCategory);
   const [user, setUser] = useState<AuthUser | null>(null);
   const [authMode, setAuthMode] = useState<AuthMode>("login");
   const [username, setUsername] = useState("");

@@ -23,9 +23,20 @@ Paws4MCAT is a Next.js application for multilingual MCAT practice questions. It 
 - `users`: stores account identity and scrypt password hashes.
 - `user_sessions`: stores hashed session tokens with expiration; browser cookies are HTTP-only.
 - `practice_progress`: stores each user's selected section, current question, selected answer, and answer history.
+- `diagnostic_results`: stores each user's diagnostic test results (overall accuracy, category performance, weak areas).
 
 # Routes
 
-- `/`: login/create-account entry point. Signed-in students see a dashboard summary first, then can continue to questions.
-- `/questions`: practice experience with login/create-account controls and autosaved progress.
+- `/`: login/create-account entry point. Signed-in students see their study plan (if diagnostic done) or a CTA to take the diagnostic, then the full dashboard.
+- `/diagnostic`: 16-question diagnostic test (4 per MCAT section, difficulty-balanced). Saves results and generates a personalized study plan.
+- `/questions`: practice experience with login/create-account controls and autosaved progress. Accepts `?category=` query param to pre-select a section.
 - `/dashboard`: signed-in student dashboard showing overall accuracy, section accuracy, and recent answer history.
+
+# Diagnostic System (`lib/diagnostic.ts`)
+
+Modular functions for the adaptive learning foundation:
+- `generateDiagnosticTest(allQuestions)` — selects 16 balanced questions (4 per category, difficulty-varied).
+- `analyzeResults(answers)` — computes overall, per-category, and per-subcategory accuracy.
+- `getWeakAreas(categoryPerformance)` — returns categories below 60% accuracy, sorted weakest-first.
+- `generateStudyPlan(categoryPerformance, weakAreas)` — produces an ordered focus list and suggested next step.
+- `buildDiagnosticResult(answers)` — assembles the full `DiagnosticResult` for storage.

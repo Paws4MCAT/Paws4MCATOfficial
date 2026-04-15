@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { SurfaceCard } from "@/components/SurfaceCard";
+import type { DiagnosticResult, McatCategory } from "@/lib/types";
 
 type AuthUser = {
   id: string;
@@ -38,9 +39,12 @@ const categoryLabels: Record<AnswerRecord["category"], string> = {
   cars: "CARS",
 };
 
+const WEAK_THRESHOLD = 60;
+
 export default function Home() {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [progress, setProgress] = useState<PracticeProgress | null>(null);
+  const [diagnostic, setDiagnostic] = useState<DiagnosticResult | null | "none">(null);
   const [authMode, setAuthMode] = useState<AuthMode>("login");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -60,14 +64,7 @@ export default function Home() {
       const correct = sectionAnswers.filter((record) => record.isCorrect).length;
       const total = sectionAnswers.length;
       const accuracy = total === 0 ? 0 : Math.round((correct / total) * 100);
-
-      return {
-        category,
-        label: categoryLabels[category],
-        correct,
-        total,
-        accuracy,
-      };
+      return { category, label: categoryLabels[category], correct, total, accuracy };
     });
   }, [answerHistory]);
 
@@ -83,9 +80,18 @@ export default function Home() {
       setProgress(null);
       return;
     }
-
     const data = (await response.json()) as { progress: PracticeProgress | null };
     setProgress(data.progress);
+  }
+
+  async function loadDiagnostic() {
+    const response = await fetch("/api/diagnostic", { cache: "no-store" });
+    if (!response.ok) {
+      setDiagnostic("none");
+      return;
+    }
+    const data = (await response.json()) as { diagnostic: DiagnosticResult | null };
+    setDiagnostic(data.diagnostic ?? "none");
   }
 
   useEffect(() => {
@@ -95,12 +101,10 @@ export default function Home() {
       try {
         const response = await fetch("/api/auth/me", { cache: "no-store" });
         if (!response.ok || !isMounted) return;
-
         const data = (await response.json()) as { user: AuthUser | null };
         setUser(data.user);
-
         if (data.user) {
-          await loadProgress();
+          await Promise.all([loadProgress(), loadDiagnostic()]);
         }
       } finally {
         if (isMounted) setIsLoading(false);
@@ -108,10 +112,7 @@ export default function Home() {
     }
 
     loadHome();
-
-    return () => {
-      isMounted = false;
-    };
+    return () => { isMounted = false; };
   }, []);
 
   async function handleAuthSubmit(event: FormEvent<HTMLFormElement>) {
@@ -135,7 +136,7 @@ export default function Home() {
       setUser(data.user);
       setUsername("");
       setPassword("");
-      await loadProgress();
+      await Promise.all([loadProgress(), loadDiagnostic()]);
     } catch {
       setAuthError("Unable to reach the account service.");
     } finally {
@@ -147,7 +148,20 @@ export default function Home() {
     await fetch("/api/auth/logout", { method: "POST" });
     setUser(null);
     setProgress(null);
+    setDiagnostic(null);
   }
+
+  const hasDiagnostic = diagnostic !== null && diagnostic !== "none";
+  const diagnosticResult = hasDiagnostic ? (diagnostic as DiagnosticResult) : null;
+  const weakAreas = diagnosticResult
+    ? (Object.keys(diagnosticResult.categoryPerformance) as McatCategory[]).filter(
+        (cat) => diagnosticResult.categoryPerformance[cat].accuracy < WEAK_THRESHOLD,
+      ).sort(
+        (a, b) =>
+          diagnosticResult.categoryPerformance[a].accuracy -
+          diagnosticResult.categoryPerformance[b].accuracy,
+      )
+    : [];
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-5xl items-center justify-center px-4 py-12">
@@ -161,9 +175,7 @@ export default function Home() {
             priority
             className="mx-auto mb-4 h-auto w-full max-w-sm"
           />
-          <h1 className="text-4xl font-extrabold text-slate-900 sm:text-5xl">
-            Paws4MCAT
-          </h1>
+          <h1 className="text-4xl font-extrabold text-slate-900 sm:text-5xl">Paws4MCAT</h1>
           <p className="mx-auto mt-4 max-w-xl text-base text-slate-600 sm:text-lg">
             Log in to view your dashboard, then jump into MCAT practice questions.
           </p>
@@ -175,6 +187,7 @@ export default function Home() {
           </div>
         ) : user ? (
           <div className="mt-8">
+            {/* Header */}
             <div className="mb-6 flex flex-col gap-3 rounded-2xl bg-white/70 p-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm font-semibold text-slate-500">Welcome back</p>
@@ -191,6 +204,91 @@ export default function Home() {
               </button>
             </div>
 
+            {/* Diagnostic banner — shown when no diagnostic has been taken */}
+            {diagnostic === "none" && (
+              <div className="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 to-purple-700 p-6 text-white shadow-lg">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-wide text-blue-200">
+                      Personalize your study plan
+                    </p>
+                    <h2 className="mt-1 text-xl font-extrabold">
+                      Take the Diagnostic Test
+                    </h2>
+                    <p className="mt-1.5 text-sm leading-relaxed text-blue-100">
+                      Answer {16} quick questions and get a tailored study plan based on your strengths and weak areas.
+                    </p>
+                  </div>
+                  <Link
+                    href="/diagnostic"
+                    className="inline-flex shrink-0 items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-bold text-blue-700 transition hover:scale-[1.02] hover:shadow-md active:scale-[0.99]"
+                  >
+                    Start Diagnostic
+                  </Link>
+                </div>
+              </div>
+            )}
+
+            {/* Diagnostic study plan summary — shown after diagnostic completed */}
+            {diagnosticResult && (
+              <div className="mb-6 rounded-2xl bg-white/75 p-5 shadow-sm">
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-lg font-extrabold text-slate-900">Your Study Plan</h2>
+                  <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700">
+                    Diagnostic: {diagnosticResult.overallAccuracy}% overall
+                  </span>
+                </div>
+
+                {weakAreas.length > 0 ? (
+                  <>
+                    <p className="mb-3 text-sm text-slate-600">
+                      Focus on these sections to improve your score:
+                    </p>
+                    <div className="space-y-2">
+                      {weakAreas.map((cat, index) => (
+                        <div
+                          key={cat}
+                          className="flex items-center justify-between rounded-xl bg-red-50/80 px-4 py-2.5"
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-100 text-[10px] font-extrabold text-red-700">
+                              {index + 1}
+                            </span>
+                            <span className="text-sm font-semibold text-slate-900">
+                              {categoryLabels[cat as AnswerRecord["category"]]} ({cat.toUpperCase()})
+                            </span>
+                          </div>
+                          <span className="text-xs font-bold text-red-700">
+                            {diagnosticResult.categoryPerformance[cat].accuracy}%
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <p className="text-sm text-slate-600">
+                    Great job! You scored above 60% in all sections. Keep practicing to maintain your edge.
+                  </p>
+                )}
+
+                <div className="mt-4 flex gap-3">
+                  <Link
+                    href={weakAreas.length > 0 ? `/questions?category=${weakAreas[0]}` : "/questions"}
+                    className="inline-flex rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2 text-sm font-semibold text-white transition hover:scale-[1.02] hover:shadow-md active:scale-[0.99]"
+                  >
+                    Start Personalized Practice
+                  </Link>
+                  <Link
+                    href="/diagnostic"
+                    className="inline-flex rounded-full border border-slate-300 bg-white/80 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:bg-white hover:shadow-sm active:scale-[0.99]"
+                  >
+                    View Full Results
+                  </Link>
+                </div>
+              </div>
+            )}
+
+            {/* Stats */}
             <div className="mb-6 grid gap-4 sm:grid-cols-3">
               <div className="rounded-2xl bg-white/75 p-5 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -216,6 +314,7 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Section accuracy + recent history */}
             <div className="grid gap-5 lg:grid-cols-2">
               <div className="rounded-2xl bg-white/75 p-5 shadow-sm">
                 <h2 className="text-lg font-extrabold text-slate-900">Section accuracy</h2>
@@ -278,6 +377,7 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Nav buttons */}
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
                 href="/questions"

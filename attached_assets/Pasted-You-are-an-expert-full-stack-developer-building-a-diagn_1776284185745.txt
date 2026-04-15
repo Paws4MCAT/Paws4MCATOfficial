@@ -1,0 +1,158 @@
+You are an expert full-stack developer building a diagnostic and adaptive learning system.
+
+Help me implement a diagnostic test feature for my MCAT platform (Paws4MCAT).
+
+IMPORTANT:
+- Keep it simple but scalable
+- Write clean, modular code
+- Explain key parts clearly
+- Do NOT overcomplicate
+
+----------------------------------------
+
+GOAL:
+
+When a user first signs up:
+
+1. They take a diagnostic test
+2. The system analyzes performance
+3. The app generates a personalized study focus
+
+----------------------------------------
+
+PART 1: DIAGNOSTIC TEST SETUP
+
+Create a diagnostic mode that:
+- Selects a small set of questions (e.g. 12–20)
+- Ensures coverage across categories:
+   - CP (Chemical/Physical)
+   - BB (Biological/Biochemical)
+   - PS (Psych/Soc)
+   - CARS
+
+Logic:
+- Randomly select questions from each category
+- Balance difficulty (easy/medium/hard mix)
+
+----------------------------------------
+
+PART 2: TRACK PERFORMANCE
+
+For each question, track:
+{
+  questionId,
+  isCorrect,
+  category,
+  subcategory,
+  difficulty
+}
+
+----------------------------------------
+
+PART 3: ANALYZE RESULTS
+
+After test completion:
+
+Calculate:
+- Overall accuracy
+- Accuracy per category
+- Accuracy per subcategory (if possible)
+
+Example:
+CP: 40%  
+BB: 75%  
+PS: 60%  
+CARS: 50%
+
+----------------------------------------
+
+PART 4: IDENTIFY WEAK AREAS
+
+Create logic to detect weakest areas:
+
+Example:
+- If accuracy < 60% → mark as weak
+- Sort categories from weakest to strongest
+
+----------------------------------------
+
+PART 5: GENERATE STUDY PLAN
+
+Create a simple output like:
+
+"Recommended Focus Areas:"
+1. Physics (CP)
+2. CARS
+3. Psychology
+
+Also generate:
+- Suggested next mode:
+   - Practice weak categories
+   - Review incorrect questions
+
+----------------------------------------
+
+PART 6: STORE RESULTS
+
+Store diagnostic results in state (for now):
+
+{
+  overallAccuracy,
+  categoryPerformance: {},
+  weakAreas: []
+}
+
+Structure this so it can later be saved to a database per user.
+
+----------------------------------------
+
+PART 7: USER FLOW
+
+When app starts:
+
+IF first time user:
+→ show "Start Diagnostic Test"
+
+ELSE:
+→ go to normal study modes
+
+----------------------------------------
+
+PART 8: UI (SIMPLE FOR NOW)
+
+- Intro screen:
+   "Take a quick diagnostic to personalize your study plan"
+
+- End screen:
+   - Show results
+   - Show weak areas
+   - Button: "Start Personalized Practice"
+
+----------------------------------------
+
+PART 9: FUTURE READY
+
+Structure code so we can later:
+- Save per user
+- Update recommendations over time
+- Add adaptive difficulty
+- Add AI recommendations
+
+----------------------------------------
+
+OUTPUT REQUIREMENTS:
+
+- Modular functions:
+   - generateDiagnosticTest()
+   - analyzeResults()
+   - getWeakAreas()
+   - generateStudyPlan()
+
+- Clean, readable code
+- Comments explaining logic
+
+----------------------------------------
+
+GOAL:
+
+Build a simple but powerful foundation for adaptive learning that can scale into a full intelligent study system.
