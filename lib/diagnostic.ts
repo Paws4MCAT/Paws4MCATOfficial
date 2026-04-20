@@ -13,6 +13,13 @@ const QUESTIONS_PER_CATEGORY = 3;
 
 const DIFFICULTY_TARGETS: Difficulty[] = ["easy", "medium", "hard"];
 
+export const CATEGORY_LABELS: Record<McatCategory, string> = {
+  cp: "Chemical & Physical Sciences",
+  bb: "Biological & Biochemical Sciences",
+  ps: "Psychological & Social Sciences",
+  cars: "Critical Analysis & Reasoning Skills",
+};
+
 /** Fisher-Yates shuffle — returns a new array */
 function shuffle<T>(items: T[]): T[] {
   const arr = [...items];
@@ -46,7 +53,6 @@ function pickFromCategory(questions: Question[], count: number): Question[] {
       picked.push(candidate);
       usedIds.add(candidate.id);
     } else {
-      // Fallback: pick any unused question from this category
       const fallback = shuffle(questions).find((q) => !usedIds.has(q.id));
       if (fallback) {
         picked.push(fallback);
@@ -149,7 +155,6 @@ export function generateStudyPlan(
   categoryPerformance: Record<McatCategory, CategoryPerformance>,
   weakAreas: McatCategory[],
 ): StudyPlan {
-  // Sort all categories from weakest to strongest for the focus list
   const focusAreas = [...CATEGORIES]
     .sort(
       (a, b) => categoryPerformance[a].accuracy - categoryPerformance[b].accuracy,
@@ -171,6 +176,50 @@ export function generateStudyPlan(
     : "Great job! You performed well across all sections. Keep practicing to stay sharp.";
 
   return { focusAreas, suggestedMode, message };
+}
+
+/**
+ * Generates simple, actionable text recommendations based on weak areas and
+ * current category performance. Used on the insights dashboard.
+ */
+export function generateRecommendations(
+  weakAreas: McatCategory[],
+  categoryPerformance: Record<McatCategory, CategoryPerformance>,
+): string[] {
+  const recommendations: string[] = [];
+
+  if (weakAreas.length === 0) {
+    recommendations.push(
+      "You're performing well across all sections! Keep practicing daily to maintain your edge.",
+    );
+    return recommendations;
+  }
+
+  const weakNames = weakAreas.map((c) => c.toUpperCase()).join(" and ");
+  recommendations.push(
+    `You should focus on ${weakNames} — ${weakAreas.length === 1 ? "this is your weakest area" : "these are your weakest areas"}.`,
+  );
+
+  for (const cat of weakAreas) {
+    const acc = categoryPerformance[cat]?.accuracy ?? 0;
+    if (acc < 40) {
+      recommendations.push(
+        `${cat.toUpperCase()} is below 40% — start with foundational review before attempting more questions.`,
+      );
+    } else {
+      recommendations.push(
+        `${cat.toUpperCase()} is below 60% — daily focused practice in this section will move the needle quickly.`,
+      );
+    }
+  }
+
+  if (weakAreas.length > 1) {
+    recommendations.push(
+      "Tackle one weak section at a time rather than jumping between them — depth beats breadth here.",
+    );
+  }
+
+  return recommendations;
 }
 
 /**

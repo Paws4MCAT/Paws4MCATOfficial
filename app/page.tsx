@@ -216,7 +216,7 @@ export default function Home() {
                       Take the Diagnostic Test
                     </h2>
                     <p className="mt-1.5 text-sm leading-relaxed text-blue-100">
-                      Answer {16} quick questions and get a tailored study plan based on your strengths and weak areas.
+                      Answer 12 quick questions and get a tailored study plan based on your strengths and weak areas.
                     </p>
                   </div>
                   <Link
@@ -271,18 +271,18 @@ export default function Home() {
                   </p>
                 )}
 
-                <div className="mt-4 flex gap-3">
+                <div className="mt-4 flex flex-wrap gap-3">
                   <Link
                     href={weakAreas.length > 0 ? `/questions?category=${weakAreas[0]}` : "/questions"}
                     className="inline-flex rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2 text-sm font-semibold text-white transition hover:scale-[1.02] hover:shadow-md active:scale-[0.99]"
                   >
-                    Start Personalized Practice
+                    {weakAreas.length > 0 ? "Practice Weak Areas" : "Start Practicing"}
                   </Link>
                   <Link
-                    href="/diagnostic"
+                    href="/insights"
                     className="inline-flex rounded-full border border-slate-300 bg-white/80 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:bg-white hover:shadow-sm active:scale-[0.99]"
                   >
-                    View Full Results
+                    View Insights
                   </Link>
                 </div>
               </div>
@@ -386,10 +386,16 @@ export default function Home() {
                 Go to Questions
               </Link>
               <Link
+                href="/insights"
+                className="inline-flex rounded-full border border-slate-300 bg-white/80 px-7 py-3 font-semibold text-slate-700 transition hover:bg-white hover:shadow-md active:scale-[0.99]"
+              >
+                View Insights
+              </Link>
+              <Link
                 href="/dashboard"
                 className="inline-flex rounded-full border border-slate-300 bg-white/80 px-7 py-3 font-semibold text-slate-700 transition hover:bg-white hover:shadow-md active:scale-[0.99]"
               >
-                Open Full Dashboard
+                Full Dashboard
               </Link>
             </div>
           </div>

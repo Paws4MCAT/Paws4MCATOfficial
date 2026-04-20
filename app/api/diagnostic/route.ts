@@ -77,3 +77,19 @@ export async function POST(request: Request) {
 
   return NextResponse.json({ ok: true });
 }
+
+/** DELETE /api/diagnostic — clears the current user's diagnostic result so they can retake */
+export async function DELETE() {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return NextResponse.json({ error: "Login required." }, { status: 401 });
+  }
+
+  await pool.query(
+    `DELETE FROM diagnostic_results WHERE user_id = $1`,
+    [user.id],
+  );
+
+  return NextResponse.json({ ok: true });
+}

@@ -8,6 +8,7 @@ import { SurfaceCard } from "@/components/SurfaceCard";
 import { QuestionCard } from "@/components/QuestionCard";
 import {
   buildDiagnosticResult,
+  CATEGORY_LABELS,
   generateStudyPlan,
   getWeakAreas,
 } from "@/lib/diagnostic";
@@ -20,16 +21,38 @@ import type {
 
 type Phase = "loading" | "already-done" | "intro" | "test" | "results";
 
-const CATEGORY_LABELS: Record<McatCategory, string> = {
-  cp: "Chemical & Physical Sciences",
-  bb: "Biological & Biochemical Sciences",
-  ps: "Psychological & Social Sciences",
-  cars: "Critical Analysis & Reasoning Skills",
-};
-
 type DiagnosticClientProps = {
   questions: Question[];
 };
+
+// ── localStorage helpers ─────────────────────────────────────────────────────
+
+const LS_KEY = "paws4mcat:diagnostic";
+
+function saveToLocalStorage(result: DiagnosticResult) {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(result));
+  } catch {
+  }
+}
+
+function loadFromLocalStorage(): DiagnosticResult | null {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    return raw ? (JSON.parse(raw) as DiagnosticResult) : null;
+  } catch {
+    return null;
+  }
+}
+
+function clearLocalStorage() {
+  try {
+    localStorage.removeItem(LS_KEY);
+  } catch {
+  }
+}
+
+// ── Main component ────────────────────────────────────────────────────────────
 
 export function DiagnosticClient({ questions }: DiagnosticClientProps) {
   const [phase, setPhase] = useState<Phase>("loading");
@@ -49,7 +72,7 @@ export function DiagnosticClient({ questions }: DiagnosticClientProps) {
     };
   }, []);
 
-  // On mount: check auth + existing diagnostic
+  // On mount: check auth + existing diagnostic (DB first, localStorage fallback)
   useEffect(() => {
     async function checkStatus() {
       try {
@@ -66,14 +89,24 @@ export function DiagnosticClient({ questions }: DiagnosticClientProps) {
         return;
       }
 
+      // Check database first
       const diagRes = await fetch("/api/diagnostic", { cache: "no-store" });
       if (diagRes.ok) {
         const data = (await diagRes.json()) as { diagnostic: DiagnosticResult | null };
         if (data.diagnostic) {
+          saveToLocalStorage(data.diagnostic);
           setExistingResult(data.diagnostic);
           setPhase("already-done");
           return;
         }
+      }
+
+      // No DB record — try localStorage as offline fallback
+      const local = loadFromLocalStorage();
+      if (local) {
+        setExistingResult(local);
+        setPhase("already-done");
+        return;
       }
 
       setPhase("intro");
@@ -124,6 +157,9 @@ export function DiagnosticClient({ questions }: DiagnosticClientProps) {
     setResult(built);
     setPhase("results");
 
+    // Persist immediately to localStorage for offline resilience
+    saveToLocalStorage(built);
+
     setIsSaving(true);
     try {
       await fetch("/api/diagnostic", {
@@ -136,7 +172,14 @@ export function DiagnosticClient({ questions }: DiagnosticClientProps) {
     }
   }
 
-  function handleRetakeTest() {
+  async function handleRetakeTest() {
+    // Clear localStorage + DB record so a fresh test can be stored
+    clearLocalStorage();
+    try {
+      await fetch("/api/diagnostic", { method: "DELETE" });
+    } catch {
+    }
+
     setPhase("intro");
     setCurrentIndex(0);
     setSelectedAnswer(null);
@@ -192,7 +235,7 @@ export function DiagnosticClient({ questions }: DiagnosticClientProps) {
                   <span className="mb-1 block font-extrabold uppercase tracking-wide text-blue-700">
                     {cat.toUpperCase()}
                   </span>
-                  {CATEGORY_LABELS[cat].split("&")[0].trim()}
+                  {CATEGORY_LABELS[cat]}
                 </div>
               ))}
             </div>
@@ -242,7 +285,6 @@ export function DiagnosticClient({ questions }: DiagnosticClientProps) {
           <h1 className="text-xl font-extrabold text-slate-900 sm:text-2xl">Diagnostic Test</h1>
         </div>
 
-        {/* Progress bar */}
         <SurfaceCard className="mb-6">
           <div className="mb-2 flex items-center justify-between text-sm font-semibold text-slate-800">
             <span>Question {currentIndex + 1} of {questions.length}</span>
@@ -368,10 +410,9 @@ function ResultsView({
                 : "Needs Work"}
           </div>
         </div>
-        {isSaving && (
+        {isSaving ? (
           <p className="mt-3 text-xs font-medium text-slate-400">Saving your results...</p>
-        )}
-        {!isSaving && (
+        ) : (
           <p className="mt-3 text-xs font-medium text-slate-400">Results saved to your account.</p>
         )}
       </SurfaceCard>
@@ -454,28 +495,24 @@ function ResultsView({
       {/* CTA buttons */}
       <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center paws-enter">
         <Link
-          href={
-            weakAreas.length > 0
-              ? `/questions?category=${weakAreas[0]}`
-              : "/questions"
-          }
+          href={weakAreas.length > 0 ? `/questions?category=${weakAreas[0]}` : "/questions"}
           className={[
             "inline-flex rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-7 py-3 font-semibold text-white",
             "transition duration-200 ease-out hover:scale-[1.02] hover:shadow-lg active:scale-[0.99]",
             "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400",
           ].join(" ")}
         >
-          Start Personalized Practice
+          {weakAreas.length > 0 ? "Practice Weak Areas" : "Start Practicing"}
         </Link>
         <Link
-          href="/"
+          href="/insights"
           className={[
             "inline-flex rounded-full border border-slate-300 bg-white/80 px-7 py-3 font-semibold text-slate-700",
             "transition duration-200 ease-out hover:bg-white hover:shadow-md active:scale-[0.99]",
             "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400",
           ].join(" ")}
         >
-          Go to Dashboard
+          View Full Insights
         </Link>
       </div>
 

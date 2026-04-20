@@ -1,6 +1,6 @@
 # Project Overview
 
-Paws4MCAT is a Next.js application for multilingual MCAT practice questions. It uses the App Router, local JSON question data, and a small API route for filtered question retrieval.
+Paws4MCAT is a Next.js 15 + TypeScript MCAT practice app with PostgreSQL, bilingual (EN/ES) questions, user authentication, progress tracking, a diagnostic test system, and a persistent adaptive learning engine.
 
 # Replit Runtime
 
@@ -28,15 +28,31 @@ Paws4MCAT is a Next.js application for multilingual MCAT practice questions. It 
 # Routes
 
 - `/`: login/create-account entry point. Signed-in students see their study plan (if diagnostic done) or a CTA to take the diagnostic, then the full dashboard.
-- `/diagnostic`: 16-question diagnostic test (4 per MCAT section, difficulty-balanced). Saves results and generates a personalized study plan.
-- `/questions`: practice experience with login/create-account controls and autosaved progress. Accepts `?category=` query param to pre-select a section.
+- `/diagnostic`: 12-question diagnostic test (3 per MCAT section, difficulty-balanced). Saves results to PostgreSQL + localStorage. Retake clears both.
+- `/questions`: practice experience with compact header, login/create-account controls, autosaved progress, and "Practice Weak Areas" mode. Accepts `?category=` query param.
+- `/insights`: persistent insights dashboard showing diagnostic baseline, current practice accuracy, delta per section, weakest areas ranked, and text recommendations.
 - `/dashboard`: signed-in student dashboard showing overall accuracy, section accuracy, and recent answer history.
 
-# Diagnostic System (`lib/diagnostic.ts`)
+# Adaptive Learning System
 
-Modular functions for the adaptive learning foundation:
-- `generateDiagnosticTest(allQuestions)` — selects 16 balanced questions (4 per category, difficulty-varied).
+## API Routes
+- `GET /api/diagnostic` — fetch saved diagnostic result
+- `POST /api/diagnostic` — save/replace diagnostic result
+- `DELETE /api/diagnostic` — clear diagnostic result (retake flow)
+- `GET /api/insights` — returns combined `{ diagnostic, practice, improvement, recommendations, weakAreas }` from DB
+- `GET /api/progress` — fetch practice progress
+- `PUT /api/progress` — update practice progress
+
+## localStorage Persistence
+- Key `paws4mcat:diagnostic` stores `DiagnosticResult` JSON for offline resilience and fast "Practice Weak Areas" detection.
+
+## Diagnostic System (`lib/diagnostic.ts`)
+
+Modular functions for the adaptive learning engine:
+- `generateDiagnosticTest(allQuestions)` — selects 12 balanced questions (3 per category, difficulty-varied).
 - `analyzeResults(answers)` — computes overall, per-category, and per-subcategory accuracy.
 - `getWeakAreas(categoryPerformance)` — returns categories below 60% accuracy, sorted weakest-first.
 - `generateStudyPlan(categoryPerformance, weakAreas)` — produces an ordered focus list and suggested next step.
+- `generateRecommendations(weakAreas, categoryPerformance)` — generates actionable text recommendations.
 - `buildDiagnosticResult(answers)` — assembles the full `DiagnosticResult` for storage.
+- `CATEGORY_LABELS` — exported record of full MCAT category names.
