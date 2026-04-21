@@ -104,6 +104,8 @@ export default async function DashboardPage() {
     ),
   ]);
 
+  const diagnostic = diagnosticResult.rows[0] ?? null;
+
   const progress = progressResult.rows[0] ?? null;
   const answerHistory = parseAnswerHistory(progress?.answer_history);
   const totalAnswered = answerHistory.length;
