@@ -27,6 +27,27 @@ export type AnswerRecord = {
   timestamp: number;
 };
 
+export type DiagnosticAnswer = {
+  questionId: string;
+  isCorrect: boolean;
+  category: McatCategory;
+  subcategory: string;
+  difficulty: Difficulty;
+};
+
+export type CategoryPerformance = {
+  total: number;
+  correct: number;
+  accuracy: number;
+};
+
+export type DiagnosticResult = {
+  overallAccuracy: number;
+  categoryPerformance: Record<McatCategory, CategoryPerformance>;
+  weakAreas: McatCategory[];
+  completedAt: string;
+};
+
 export type PracticeProgress = {
   selectedCategory: McatCategory | "all";
   currentQuestionIndex: number;

@@ -52,5 +52,473 @@
     "difficulty": "medium",
     "category": "cars",
     "subcategory": "social-sciences"
+  },
+  {
+    "id": "cars-logic-001",
+    "question": {
+      "en": "What is the main purpose of an argument in a passage?",
+      "es": "¿Cuál es el propósito principal de un argumento en un pasaje?"
+    },
+    "choices": [
+      "To entertain the reader",
+      "To present evidence and support a claim",
+      "To describe events",
+      "To summarize information"
+    ],
+    "correctAnswer": "To present evidence and support a claim",
+    "explanation": "Arguments aim to support a central claim using evidence and reasoning.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+  {
+    "id": "cars-logic-002",
+    "question": {
+      "en": "What does the author’s tone most directly reveal?",
+      "es": "¿Qué revela más directamente el tono del autor?"
+    },
+    "choices": [
+      "The topic of the passage",
+      "The author's attitude toward the subject",
+      "The length of the passage",
+      "The structure of the argument"
+    ],
+    "correctAnswer": "The author's attitude toward the subject",
+    "explanation": "Tone reflects how the author feels about the topic.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "reading-comprehension"
+  },
+  {
+    "id": "cars-logic-003",
+    "question": {
+      "en": "Which statement best identifies a central thesis?",
+      "es": "¿Qué afirmación identifica mejor una tesis central?"
+    },
+    "choices": [
+      "A minor supporting detail",
+      "A summary of one paragraph",
+      "The main argument of the passage",
+      "An unrelated opinion"
+    ],
+    "correctAnswer": "The main argument of the passage",
+    "explanation": "The thesis is the central claim the author is arguing.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+  {
+    "id": "cars-logic-004",
+    "question": {
+      "en": "What is an assumption in an argument?",
+      "es": "¿Qué es una suposición en un argumento?"
+    },
+    "choices": [
+      "A proven fact",
+      "An unstated belief required for the argument",
+      "A conclusion",
+      "A contradiction"
+    ],
+    "correctAnswer": "An unstated belief required for the argument",
+    "explanation": "Assumptions are ideas the argument depends on but does not explicitly state.",
+    "difficulty": "medium",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+  {
+    "id": "cars-logic-005",
+    "question": {
+      "en": "Which choice would weaken an argument?",
+      "es": "¿Qué opción debilitaría un argumento?"
+    },
+    "choices": [
+      "Supporting evidence",
+      "A contradiction to the main claim",
+      "Restating the thesis",
+      "Providing examples"
+    ],
+    "correctAnswer": "A contradiction to the main claim",
+    "explanation": "Contradictory evidence undermines the argument.",
+    "difficulty": "medium",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+
+  {
+    "id": "cars-logic-006",
+    "question": {
+      "en": "What does it mean to infer something from a passage?",
+      "es": "¿Qué significa inferir algo de un pasaje?"
+    },
+    "choices": [
+      "State it directly",
+      "Guess randomly",
+      "Draw a logical conclusion from evidence",
+      "Ignore context"
+    ],
+    "correctAnswer": "Draw a logical conclusion from evidence",
+    "explanation": "Inference uses clues from the passage to reach a conclusion.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "reading-comprehension"
+  },
+  {
+    "id": "cars-logic-007",
+    "question": {
+      "en": "What is the function of a counterargument?",
+      "es": "¿Cuál es la función de un contraargumento?"
+    },
+    "choices": [
+      "Support the main claim",
+      "Oppose or challenge the argument",
+      "Summarize the text",
+      "Provide definitions"
+    ],
+    "correctAnswer": "Oppose or challenge the argument",
+    "explanation": "Counterarguments present opposing viewpoints.",
+    "difficulty": "medium",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+  {
+    "id": "cars-logic-008",
+    "question": {
+      "en": "Which best describes an author's bias?",
+      "es": "¿Qué describe mejor el sesgo del autor?"
+    },
+    "choices": [
+      "Neutral viewpoint",
+      "Personal perspective influencing argument",
+      "Random ideas",
+      "Incorrect facts"
+    ],
+    "correctAnswer": "Personal perspective influencing argument",
+    "explanation": "Bias reflects subjective viewpoints.",
+    "difficulty": "medium",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+
+  {
+    "id": "cars-logic-009",
+    "question": {
+      "en": "What strengthens an argument most effectively?",
+      "es": "¿Qué fortalece más eficazmente un argumento?"
+    },
+    "choices": [
+      "Irrelevant examples",
+      "Strong supporting evidence",
+      "Repetition",
+      "Long sentences"
+    ],
+    "correctAnswer": "Strong supporting evidence",
+    "explanation": "Evidence directly supports claims.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+
+  {
+    "id": "cars-logic-010",
+    "question": {
+      "en": "What is the purpose of an example in a passage?",
+      "es": "¿Cuál es el propósito de un ejemplo en un pasaje?"
+    },
+    "choices": [
+      "Confuse readers",
+      "Illustrate a point",
+      "Add length",
+      "Replace argument"
+    ],
+    "correctAnswer": "Illustrate a point",
+    "explanation": "Examples clarify and support arguments.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "reading-comprehension"
+  },
+
+  {
+    "id": "cars-logic-011",
+    "question": {
+      "en": "Which question asks about the author's intent?",
+      "es": "¿Qué pregunta trata sobre la intención del autor?"
+    },
+    "choices": [
+      "What does the author want to achieve?",
+      "What is the topic?",
+      "What is the length?",
+      "What is the structure?"
+    ],
+    "correctAnswer": "What does the author want to achieve?",
+    "explanation": "Intent refers to purpose.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+
+  {
+    "id": "cars-logic-012",
+    "question": {
+      "en": "What does a conclusion typically do?",
+      "es": "¿Qué hace típicamente una conclusión?"
+    },
+    "choices": [
+      "Introduce topic",
+      "Summarize and reinforce argument",
+      "Add unrelated ideas",
+      "Provide definitions"
+    ],
+    "correctAnswer": "Summarize and reinforce argument",
+    "explanation": "Conclusions wrap up arguments.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "reading-comprehension"
+  },
+
+  {
+    "id": "cars-logic-013",
+    "question": {
+      "en": "What is the role of evidence?",
+      "es": "¿Cuál es el papel de la evidencia?"
+    },
+    "choices": [
+      "Support claims",
+      "Confuse readers",
+      "Replace arguments",
+      "Add bias"
+    ],
+    "correctAnswer": "Support claims",
+    "explanation": "Evidence backs up arguments.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+
+  {
+    "id": "cars-logic-014",
+    "question": {
+      "en": "What is the main idea?",
+      "es": "¿Cuál es la idea principal?"
+    },
+    "choices": [
+      "Central concept",
+      "Minor detail",
+      "Example",
+      "Opinion"
+    ],
+    "correctAnswer": "Central concept",
+    "explanation": "Main idea is the core message.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "reading-comprehension"
+  },
+
+  {
+    "id": "cars-logic-015",
+    "question": {
+      "en": "What does tone influence most?",
+      "es": "¿Qué influye más el tono?"
+    },
+    "choices": [
+      "Facts",
+      "Reader perception",
+      "Length",
+      "Grammar"
+    ],
+    "correctAnswer": "Reader perception",
+    "explanation": "Tone shapes how readers interpret content.",
+    "difficulty": "medium",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+
+  {
+    "id": "cars-logic-016",
+    "question": {
+      "en": "Which is a logical fallacy?",
+      "es": "¿Cuál es una falacia lógica?"
+    },
+    "choices": [
+      "Strong evidence",
+      "Personal attack",
+      "Data analysis",
+      "Clear reasoning"
+    ],
+    "correctAnswer": "Personal attack",
+    "explanation": "Ad hominem is a logical fallacy.",
+    "difficulty": "medium",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+
+  {
+    "id": "cars-logic-017",
+    "question": {
+      "en": "What does context help determine?",
+      "es": "¿Qué ayuda a determinar el contexto?"
+    },
+    "choices": [
+      "Meaning",
+      "Length",
+      "Font",
+      "Structure"
+    ],
+    "correctAnswer": "Meaning",
+    "explanation": "Context clarifies interpretation.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "reading-comprehension"
+  },
+
+  {
+    "id": "cars-logic-018",
+    "question": {
+      "en": "What is a supporting detail?",
+      "es": "¿Qué es un detalle de apoyo?"
+    },
+    "choices": [
+      "Main claim",
+      "Evidence for claim",
+      "Conclusion",
+      "Assumption"
+    ],
+    "correctAnswer": "Evidence for claim",
+    "explanation": "Details support main ideas.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "reading-comprehension"
+  },
+
+  {
+    "id": "cars-logic-019",
+    "question": {
+      "en": "What does the structure of a passage show?",
+      "es": "¿Qué muestra la estructura de un pasaje?"
+    },
+    "choices": [
+      "Organization of ideas",
+      "Author's bias",
+      "Topic only",
+      "Length"
+    ],
+    "correctAnswer": "Organization of ideas",
+    "explanation": "Structure reflects logical flow.",
+    "difficulty": "medium",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+
+  {
+    "id": "cars-logic-020",
+    "question": {
+      "en": "What is a claim?",
+      "es": "¿Qué es una afirmación?"
+    },
+    "choices": [
+      "Main argument",
+      "Example",
+      "Evidence",
+      "Conclusion"
+    ],
+    "correctAnswer": "Main argument",
+    "explanation": "Claims are central assertions.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+
+  {
+    "id": "cars-logic-021",
+    "question": {
+      "en": "Which question tests inference?",
+      "es": "¿Qué pregunta evalúa inferencia?"
+    },
+    "choices": [
+      "What is stated?",
+      "What is implied?",
+      "What is repeated?",
+      "What is defined?"
+    ],
+    "correctAnswer": "What is implied?",
+    "explanation": "Inference focuses on implied meaning.",
+    "difficulty": "medium",
+    "category": "cars",
+    "subcategory": "reading-comprehension"
+  },
+
+  {
+    "id": "cars-logic-022",
+    "question": {
+      "en": "What is an author's perspective?",
+      "es": "¿Qué es la perspectiva del autor?"
+    },
+    "choices": [
+      "Viewpoint",
+      "Grammar",
+      "Length",
+      "Format"
+    ],
+    "correctAnswer": "Viewpoint",
+    "explanation": "Perspective reflects viewpoint.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+
+  {
+    "id": "cars-logic-023",
+    "question": {
+      "en": "What is the purpose of transitions?",
+      "es": "¿Cuál es el propósito de las transiciones?"
+    },
+    "choices": [
+      "Connect ideas",
+      "Add length",
+      "Confuse readers",
+      "Change topic randomly"
+    ],
+    "correctAnswer": "Connect ideas",
+    "explanation": "Transitions link concepts.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "reading-comprehension"
+  },
+
+  {
+    "id": "cars-logic-024",
+    "question": {
+      "en": "What does a strong conclusion include?",
+      "es": "¿Qué incluye una conclusión fuerte?"
+    },
+    "choices": [
+      "New arguments",
+      "Restated thesis",
+      "Random facts",
+      "Irrelevant ideas"
+    ],
+    "correctAnswer": "Restated thesis",
+    "explanation": "Conclusions reinforce the main idea.",
+    "difficulty": "medium",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
+  },
+
+  {
+    "id": "cars-logic-025",
+    "question": {
+      "en": "What is the goal of critical reading?",
+      "es": "¿Cuál es el objetivo de la lectura crítica?"
+    },
+    "choices": [
+      "Memorization",
+      "Understanding and evaluation",
+      "Speed reading",
+      "Ignoring details"
+    ],
+    "correctAnswer": "Understanding and evaluation",
+    "explanation": "Critical reading involves analyzing and judging arguments.",
+    "difficulty": "easy",
+    "category": "cars",
+    "subcategory": "critical-reasoning"
   }
 ]

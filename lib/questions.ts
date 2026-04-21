@@ -18,9 +18,13 @@ async function readQuestionsFromCategory(category: McatCategory): Promise<Questi
   const questionsFromFiles = await Promise.all(
     jsonFiles.map(async (fileName) => {
       const filePath = join(categoryPath, fileName);
-      const fileContents = await readFile(filePath, "utf8");
-      const parsed = JSON.parse(fileContents) as Question[];
-      return parsed;
+      try {
+        const fileContents = await readFile(filePath, "utf8");
+        const parsed = JSON.parse(fileContents) as Question[];
+        return parsed;
+      } catch {
+        return [] as Question[];
+      }
     }),
   );
 
@@ -28,9 +32,13 @@ async function readQuestionsFromCategory(category: McatCategory): Promise<Questi
 }
 
 async function loadQuestionsFromJsonFallback(): Promise<Question[]> {
-  const fileContents = await readFile(QUESTIONS_JSON_FALLBACK, "utf8");
-  const parsed = JSON.parse(fileContents) as RawQuestion[];
-  return parsed.map(normalizeRawQuestion);
+  try {
+    const fileContents = await readFile(QUESTIONS_JSON_FALLBACK, "utf8");
+    const parsed = JSON.parse(fileContents) as RawQuestion[];
+    return parsed.map(normalizeRawQuestion);
+  } catch {
+    return [];
+  }
 }
 
 export async function loadAllQuestions(): Promise<Question[]> {

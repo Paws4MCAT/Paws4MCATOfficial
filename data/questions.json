@@ -67,5 +67,475 @@
     "explanation": "Acceleration is the rate of change of velocity.",
     "difficulty": "hard",
     "category": "physics"
+  },
+  {
+    "id": "ps-psych-001",
+    "question": {
+      "en": "What is the primary function of the hippocampus?",
+      "es": "¿Cuál es la función principal del hipocampo?"
+    },
+    "choices": [
+      "Memory formation",
+      "Motor control",
+      "Vision processing",
+      "Hormone secretion"
+    ],
+    "correctAnswer": "Memory formation",
+    "explanation": "The hippocampus is essential for forming new memories.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+  {
+    "id": "ps-soc-002",
+    "question": {
+      "en": "What is social stratification?",
+      "es": "¿Qué es la estratificación social?"
+    },
+    "choices": [
+      "Equal distribution of resources",
+      "Ranking of individuals in society",
+      "Random grouping",
+      "Biological classification"
+    ],
+    "correctAnswer": "Ranking of individuals in society",
+    "explanation": "Social stratification refers to hierarchical organization in society.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "sociology"
+  },
+  {
+    "id": "ps-psych-003",
+    "question": {
+      "en": "Which neurotransmitter is most associated with reward?",
+      "es": "¿Qué neurotransmisor está más asociado con la recompensa?"
+    },
+    "choices": [
+      "Dopamine",
+      "Serotonin",
+      "GABA",
+      "Acetylcholine"
+    ],
+    "correctAnswer": "Dopamine",
+    "explanation": "Dopamine is strongly linked to reward and motivation pathways.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+  {
+    "id": "ps-psych-004",
+    "question": {
+      "en": "What does classical conditioning involve?",
+      "es": "¿Qué implica el condicionamiento clásico?"
+    },
+    "choices": [
+      "Learning through association",
+      "Learning through punishment",
+      "Trial and error",
+      "Observational learning"
+    ],
+    "correctAnswer": "Learning through association",
+    "explanation": "Classical conditioning pairs stimuli to produce a learned response.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+  {
+    "id": "ps-soc-005",
+    "question": {
+      "en": "What is a social norm?",
+      "es": "¿Qué es una norma social?"
+    },
+    "choices": [
+      "Biological instinct",
+      "Shared expectation of behavior",
+      "Random habit",
+      "Personal belief"
+    ],
+    "correctAnswer": "Shared expectation of behavior",
+    "explanation": "Norms guide acceptable behavior in groups.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "sociology"
+  },
+
+  {
+    "id": "ps-psych-006",
+    "question": {
+      "en": "Which part of the brain regulates basic survival functions?",
+      "es": "¿Qué parte del cerebro regula funciones básicas de supervivencia?"
+    },
+    "choices": [
+      "Brainstem",
+      "Cortex",
+      "Hippocampus",
+      "Amygdala"
+    ],
+    "correctAnswer": "Brainstem",
+    "explanation": "The brainstem controls breathing and heart rate.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+
+  {
+    "id": "ps-soc-007",
+    "question": {
+      "en": "What is cultural relativism?",
+      "es": "¿Qué es el relativismo cultural?"
+    },
+    "choices": [
+      "Judging cultures by one's own standards",
+      "Understanding cultures within their own context",
+      "Ignoring cultural differences",
+      "Comparing cultures objectively"
+    ],
+    "correctAnswer": "Understanding cultures within their own context",
+    "explanation": "Cultural relativism avoids ethnocentrism.",
+    "difficulty": "medium",
+    "category": "ps",
+    "subcategory": "sociology"
+  },
+
+  {
+    "id": "ps-psych-008",
+    "question": {
+      "en": "What is operant conditioning?",
+      "es": "¿Qué es el condicionamiento operante?"
+    },
+    "choices": [
+      "Learning through consequences",
+      "Learning through observation",
+      "Learning through association",
+      "Learning through memory"
+    ],
+    "correctAnswer": "Learning through consequences",
+    "explanation": "Operant conditioning uses reinforcement and punishment.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+
+  {
+    "id": "ps-psych-009",
+    "question": {
+      "en": "Which structure is involved in emotion processing?",
+      "es": "¿Qué estructura está involucrada en el procesamiento emocional?"
+    },
+    "choices": [
+      "Amygdala",
+      "Cerebellum",
+      "Medulla",
+      "Thalamus"
+    ],
+    "correctAnswer": "Amygdala",
+    "explanation": "The amygdala processes fear and emotions.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+
+  {
+    "id": "ps-soc-010",
+    "question": {
+      "en": "What is a role in sociology?",
+      "es": "¿Qué es un rol en sociología?"
+    },
+    "choices": [
+      "Expected behavior for a status",
+      "Random behavior",
+      "Genetic trait",
+      "Economic position"
+    ],
+    "correctAnswer": "Expected behavior for a status",
+    "explanation": "Roles define behavior expectations.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "sociology"
+  },
+
+  {
+    "id": "ps-psych-011",
+    "question": {
+      "en": "What is sensory adaptation?",
+      "es": "¿Qué es la adaptación sensorial?"
+    },
+    "choices": [
+      "Decreased sensitivity over time",
+      "Increased perception",
+      "Learning new senses",
+      "Memory formation"
+    ],
+    "correctAnswer": "Decreased sensitivity over time",
+    "explanation": "Repeated stimuli reduce response.",
+    "difficulty": "medium",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+
+  {
+    "id": "ps-soc-012",
+    "question": {
+      "en": "What is a reference group?",
+      "es": "¿Qué es un grupo de referencia?"
+    },
+    "choices": [
+      "Group used for comparison",
+      "Family only",
+      "Friends only",
+      "Random group"
+    ],
+    "correctAnswer": "Group used for comparison",
+    "explanation": "Reference groups influence self-evaluation.",
+    "difficulty": "medium",
+    "category": "ps",
+    "subcategory": "sociology"
+  },
+
+  {
+    "id": "ps-psych-013",
+    "question": {
+      "en": "Which hormone is released during stress?",
+      "es": "¿Qué hormona se libera durante el estrés?"
+    },
+    "choices": [
+      "Cortisol",
+      "Insulin",
+      "Melatonin",
+      "Oxytocin"
+    ],
+    "correctAnswer": "Cortisol",
+    "explanation": "Cortisol is the primary stress hormone.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+
+  {
+    "id": "ps-soc-014",
+    "question": {
+      "en": "What is social mobility?",
+      "es": "¿Qué es la movilidad social?"
+    },
+    "choices": [
+      "Movement between social classes",
+      "Staying in same class",
+      "Random movement",
+      "Cultural change"
+    ],
+    "correctAnswer": "Movement between social classes",
+    "explanation": "Mobility refers to class movement.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "sociology"
+  },
+
+  {
+    "id": "ps-psych-015",
+    "question": {
+      "en": "What is working memory?",
+      "es": "¿Qué es la memoria de trabajo?"
+    },
+    "choices": [
+      "Short-term active memory",
+      "Long-term storage",
+      "Sensory input",
+      "Emotional memory"
+    ],
+    "correctAnswer": "Short-term active memory",
+    "explanation": "Working memory processes current info.",
+    "difficulty": "medium",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+
+  {
+    "id": "ps-soc-016",
+    "question": {
+      "en": "What is deviance?",
+      "es": "¿Qué es la desviación?"
+    },
+    "choices": [
+      "Violation of norms",
+      "Normal behavior",
+      "Biological trait",
+      "Economic issue"
+    ],
+    "correctAnswer": "Violation of norms",
+    "explanation": "Deviance breaks social norms.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "sociology"
+  },
+
+  {
+    "id": "ps-psych-017",
+    "question": {
+      "en": "What does the prefrontal cortex control?",
+      "es": "¿Qué controla la corteza prefrontal?"
+    },
+    "choices": [
+      "Decision making",
+      "Breathing",
+      "Vision",
+      "Balance"
+    ],
+    "correctAnswer": "Decision making",
+    "explanation": "It governs executive functions.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+
+  {
+    "id": "ps-soc-018",
+    "question": {
+      "en": "What is ethnocentrism?",
+      "es": "¿Qué es el etnocentrismo?"
+    },
+    "choices": [
+      "Judging others by own culture",
+      "Understanding cultures",
+      "Ignoring differences",
+      "Cultural blending"
+    ],
+    "correctAnswer": "Judging others by own culture",
+    "explanation": "Ethnocentrism prioritizes one's own culture.",
+    "difficulty": "medium",
+    "category": "ps",
+    "subcategory": "sociology"
+  },
+
+  {
+    "id": "ps-psych-019",
+    "question": {
+      "en": "What is perception?",
+      "es": "¿Qué es la percepción?"
+    },
+    "choices": [
+      "Interpretation of sensory input",
+      "Memory storage",
+      "Learning process",
+      "Motor control"
+    ],
+    "correctAnswer": "Interpretation of sensory input",
+    "explanation": "Perception organizes sensory info.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+
+  {
+    "id": "ps-soc-020",
+    "question": {
+      "en": "What is a stereotype?",
+      "es": "¿Qué es un estereotipo?"
+    },
+    "choices": [
+      "Generalized belief about a group",
+      "Scientific fact",
+      "Individual trait",
+      "Random idea"
+    ],
+    "correctAnswer": "Generalized belief about a group",
+    "explanation": "Stereotypes simplify group traits.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "sociology"
+  },
+
+  {
+    "id": "ps-psych-021",
+    "question": {
+      "en": "What is reinforcement?",
+      "es": "¿Qué es el refuerzo?"
+    },
+    "choices": [
+      "Increasing behavior likelihood",
+      "Decreasing behavior",
+      "Ignoring behavior",
+      "Random action"
+    ],
+    "correctAnswer": "Increasing behavior likelihood",
+    "explanation": "Reinforcement strengthens behavior.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+
+  {
+    "id": "ps-soc-022",
+    "question": {
+      "en": "What is a social institution?",
+      "es": "¿Qué es una institución social?"
+    },
+    "choices": [
+      "Organized system of beliefs/behaviors",
+      "Random group",
+      "Individual habit",
+      "Biological trait"
+    ],
+    "correctAnswer": "Organized system of beliefs/behaviors",
+    "explanation": "Institutions structure society.",
+    "difficulty": "medium",
+    "category": "ps",
+    "subcategory": "sociology"
+  },
+
+  {
+    "id": "ps-psych-023",
+    "question": {
+      "en": "What is motivation?",
+      "es": "¿Qué es la motivación?"
+    },
+    "choices": [
+      "Drive to act",
+      "Memory",
+      "Emotion",
+      "Perception"
+    ],
+    "correctAnswer": "Drive to act",
+    "explanation": "Motivation initiates behavior.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
+  },
+
+  {
+    "id": "ps-soc-024",
+    "question": {
+      "en": "What is socialization?",
+      "es": "¿Qué es la socialización?"
+    },
+    "choices": [
+      "Learning cultural norms",
+      "Ignoring society",
+      "Biological growth",
+      "Random behavior"
+    ],
+    "correctAnswer": "Learning cultural norms",
+    "explanation": "Socialization teaches norms.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "sociology"
+  },
+
+  {
+    "id": "ps-psych-025",
+    "question": {
+      "en": "What is stress?",
+      "es": "¿Qué es el estrés?"
+    },
+    "choices": [
+      "Body response to challenge",
+      "Relaxation",
+      "Memory loss",
+      "Perception"
+    ],
+    "correctAnswer": "Body response to challenge",
+    "explanation": "Stress is physiological response to demands.",
+    "difficulty": "easy",
+    "category": "ps",
+    "subcategory": "psychology"
   }
 ]

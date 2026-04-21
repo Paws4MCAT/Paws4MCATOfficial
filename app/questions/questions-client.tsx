@@ -10,7 +10,18 @@ import { SurfaceCard } from "@/components/SurfaceCard";
 import { QuestionCard } from "@/components/QuestionCard";
 import { filterQuestions } from "@/lib/filterQuestions";
 import { Language } from "@/lib/language";
-import type { AnswerRecord, McatCategory, PracticeProgress, Question } from "@/lib/types";
+import type { AnswerRecord, DiagnosticResult, McatCategory, PracticeProgress, Question } from "@/lib/types";
+
+// ── localStorage helpers ──────────────────────────────────────────────────────
+
+function readDiagnosticFromStorage(): DiagnosticResult | null {
+  try {
+    const raw = localStorage.getItem("paws4mcat:diagnostic");
+    return raw ? (JSON.parse(raw) as DiagnosticResult) : null;
+  } catch {
+    return null;
+  }
+}
 
 const categoryOptions: Array<{ value: McatCategory | "all"; label: string }> = [
   { value: "all", label: "All Sections" },
@@ -29,6 +40,7 @@ const categoryShortLabels: Record<McatCategory, string> = {
 
 type QuestionsClientProps = {
   initialQuestions: Question[];
+  initialCategory?: McatCategory | "all";
 };
 
 type AuthUser = {
@@ -185,6 +197,37 @@ function AuthPanel({
     </SurfaceCard>
   );
 }
+
+// ── Weak Areas Button ─────────────────────────────────────────────────────────
+
+function WeakAreasButton({ onActivate }: { onActivate: (cats: McatCategory[]) => void }) {
+  const [weakAreas, setWeakAreas] = useState<McatCategory[]>([]);
+
+  useEffect(() => {
+    const diag = readDiagnosticFromStorage();
+    if (diag?.weakAreas && diag.weakAreas.length > 0) {
+      setWeakAreas(diag.weakAreas);
+    }
+  }, []);
+
+  if (weakAreas.length === 0) return null;
+
+  return (
+    <button
+      type="button"
+      onClick={() => onActivate(weakAreas)}
+      className={[
+        "rounded-full bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-700",
+        "border border-red-200 transition duration-200 hover:bg-red-100 active:scale-[0.98]",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400",
+      ].join(" ")}
+    >
+      Practice Weak Areas ({weakAreas.map((c) => c.toUpperCase()).join(", ")})
+    </button>
+  );
+}
+
+// ── Questions Session ─────────────────────────────────────────────────────────
 
 function QuestionsSession({
   questions,
@@ -449,9 +492,10 @@ function QuestionsSession({
   );
 }
 
-export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
+export function QuestionsClient({ initialQuestions, initialCategory = "all" }: QuestionsClientProps) {
   const [language, setLanguage] = useState<Language>("en");
-  const [selectedCategory, setSelectedCategory] = useState<McatCategory | "all">("all");
+  const [selectedCategory, setSelectedCategory] = useState<McatCategory | "all">(initialCategory);
+  const [weakModeCategories, setWeakModeCategories] = useState<McatCategory[]>([]);
   const [user, setUser] = useState<AuthUser | null>(null);
   const [authMode, setAuthMode] = useState<AuthMode>("login");
   const [username, setUsername] = useState("");
@@ -462,14 +506,17 @@ export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
   const [isProgressReady, setIsProgressReady] = useState(false);
   const [saveState, setSaveState] = useState<SaveState>("idle");
 
-  const questions = useMemo(
-    () =>
-      filterQuestions(initialQuestions, {
-        category: selectedCategory,
-        difficulty: "all",
-      }),
-    [initialQuestions, selectedCategory],
-  );
+  const isWeakMode = weakModeCategories.length > 0;
+
+  const questions = useMemo(() => {
+    if (isWeakMode) {
+      return initialQuestions.filter((q) => weakModeCategories.includes(q.category));
+    }
+    return filterQuestions(initialQuestions, {
+      category: selectedCategory,
+      difficulty: "all",
+    });
+  }, [initialQuestions, selectedCategory, isWeakMode, weakModeCategories]);
 
   const loadProgress = useCallback(async () => {
     setIsProgressReady(false);
@@ -557,6 +604,7 @@ export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
   const handleCategoryChange = (category: McatCategory | "all") => {
     setSelectedCategory(category);
     setInitialProgress(null);
+    setWeakModeCategories([]);
   };
 
   const handleProgressChange = useCallback(
@@ -580,24 +628,33 @@ export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
   );
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-4xl px-4 py-10">
-      <header className="mb-8">
-        <div className="mb-4 flex justify-center sm:justify-end">
-          <LanguageToggle language={language} onChangeLanguage={setLanguage} />
-        </div>
-        <div className="text-center">
+    <main className="mx-auto min-h-screen w-full max-w-4xl px-4 py-6">
+      {/* Compact header */}
+      <header className="mb-5 flex items-center gap-3 border-b border-slate-200/60 pb-4">
+        <Link href="/" className="shrink-0">
           <Image
             src="/paws4mcat-logo-transparent.png"
-            alt="Paws4MCAT logo"
+            alt="Paws4MCAT"
             width={900}
             height={560}
             priority
-            className="mx-auto mb-3 h-auto w-full max-w-xs sm:max-w-sm"
+            className="h-10 w-auto"
           />
-          <h1 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">
+        </Link>
+        <div className="min-w-0 flex-1">
+          <p className="text-xs font-semibold text-slate-400">Paws4MCAT</p>
+          <h1 className="text-lg font-extrabold leading-tight text-slate-900">
             Practice Questions
           </h1>
-          <p className="mt-2 text-slate-600">Choose a section and start learning.</p>
+        </div>
+        <div className="flex shrink-0 items-center gap-2">
+          <Link
+            href="/insights"
+            className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-white hover:shadow-sm"
+          >
+            Insights
+          </Link>
+          <LanguageToggle language={language} onChangeLanguage={setLanguage} />
         </div>
       </header>
 
@@ -616,39 +673,74 @@ export function QuestionsClient({ initialQuestions }: QuestionsClientProps) {
         onLogout={handleLogout}
       />
 
+      {/* Section selector / weak mode banner */}
       <SurfaceCard className="mb-6">
-        <label
-          htmlFor="section-filter"
-          className="mb-2 block text-sm font-semibold text-slate-700"
-        >
-          MCAT section
-        </label>
-        <select
-          id="section-filter"
-          value={selectedCategory}
-          onChange={(event) =>
-            handleCategoryChange(event.target.value as McatCategory | "all")
-          }
-          className={[
-            "w-full rounded-xl border border-slate-300/80 bg-white/90 px-3 py-2.5 text-sm font-medium text-slate-900",
-            "shadow-sm transition duration-200 ease-out motion-reduce:transition-none",
-            "hover:border-slate-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
-          ].join(" ")}
-        >
-          {categoryOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+        {isWeakMode ? (
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wide text-red-600">
+                Practicing Weak Areas
+              </p>
+              <p className="mt-0.5 text-sm font-semibold text-slate-900">
+                {weakModeCategories.map((c) => c.toUpperCase()).join(", ")}
+              </p>
+              <p className="mt-0.5 text-xs text-slate-500">
+                {questions.length} question{questions.length !== 1 ? "s" : ""} in these sections
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setWeakModeCategories([])}
+              className={[
+                "rounded-full border border-slate-300 bg-white/80 px-3 py-1.5 text-xs font-semibold text-slate-700",
+                "transition duration-200 hover:bg-white hover:shadow-sm active:scale-[0.98]",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400",
+              ].join(" ")}
+            >
+              Exit weak mode
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className="mb-2 flex items-center justify-between gap-2">
+              <label htmlFor="section-filter" className="text-sm font-semibold text-slate-700">
+                MCAT section
+              </label>
+              <WeakAreasButton
+                onActivate={(cats) => {
+                  setWeakModeCategories(cats);
+                  setInitialProgress(null);
+                }}
+              />
+            </div>
+            <select
+              id="section-filter"
+              value={selectedCategory}
+              onChange={(event) =>
+                handleCategoryChange(event.target.value as McatCategory | "all")
+              }
+              className={[
+                "w-full rounded-xl border border-slate-300/80 bg-white/90 px-3 py-2.5 text-sm font-medium text-slate-900",
+                "shadow-sm transition duration-200 ease-out motion-reduce:transition-none",
+                "hover:border-slate-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+              ].join(" ")}
+            >
+              {categoryOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </>
+        )}
       </SurfaceCard>
 
       <QuestionsSession
-        key={selectedCategory}
+        key={isWeakMode ? `weak:${weakModeCategories.join(",")}` : selectedCategory}
         questions={questions}
         language={language}
         selectedCategory={selectedCategory}
-        initialProgress={initialProgress}
+        initialProgress={isWeakMode ? null : initialProgress}
         onProgressChange={handleProgressChange}
       />
     </main>
