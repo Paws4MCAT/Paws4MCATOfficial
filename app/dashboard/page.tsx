@@ -86,7 +86,7 @@ export default async function DashboardPage() {
     );
   }
 
-  const [progressResult, questions] = await Promise.all([
+  const [progressResult, questions, diagnosticResult] = await Promise.all([
     pool.query<ProgressRow>(
       `SELECT selected_category, current_question_index, answer_history, updated_at
        FROM practice_progress
@@ -95,6 +95,13 @@ export default async function DashboardPage() {
       [user.id],
     ),
     loadAllQuestions(),
+    pool.query(
+      `SELECT *
+       FROM diagnostic_results
+       WHERE user_id = $1
+       LIMIT 1`,
+      [user.id],
+    ),
   ]);
 
   const progress = progressResult.rows[0] ?? null;
