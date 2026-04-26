@@ -193,8 +193,29 @@ export default async function DashboardPage() {
           </p>
         </SurfaceCard>
       </div>
+      
+    {diagnostic && (
+      <div className="mb-6">
+        <SurfaceCard className="p-5">
+          <h2 className="text-lg font-extrabold text-slate-900">
+            Diagnostic results ({formatDate(diagnostic.taken_at.getTime())})
+          </h2>
 
+          <p className="mt-2 text-sm text-slate-600">
+            Overall Accuracy: {Math.round(diagnostic.overall_accuracy)}%
+          </p>
 
+          <div className="mt-4 space-y-2">
+            {Object.entries(diagnostic.category_performance).map(([cat, val]) => (
+              <div key={cat} className="flex justify-between text-sm">
+                <span>{cat.toUpperCase()}</span>
+                <span>{Math.round(Number(val))}%</span>
+          </div>
+          ))}
+        </div>
+        </SurfaceCard>
+      </div>
+   )}
       
       <div className="grid gap-6 lg:grid-cols-[1fr_1.15fr]">
         <SurfaceCard className="p-5">
