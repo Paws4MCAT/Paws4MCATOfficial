@@ -106,13 +106,50 @@ export default async function DashboardPage() {
 
   const diagnostic = diagnosticResult.rows[0] ?? null;
 
+  // PARSE DIAGNOSTIC DATA SAFELY
+  const parsedDiagnostic = diagnostic ? {
+    ...diagnostic,
+    taken_at: new Date(diagnostic.taken_at),
+    category_performance: typeof diagnostic.category_performance === 'string' 
+      ? JSON.parse(diagnostic.category_performance)
+      : diagnostic.category_performance,
+    weak_areas: typeof diagnostic.weak_areas === 'string'
+      ? JSON.parse(diagnostic.weak_areas)
+      : diagnostic.weak_areas,
+  } : null;
+
+  // ...existing code...
+
+    {parsedDiagnostic && (
+      <div className="mb-6">
+        <SurfaceCard className="p-5">
+          <h2 className="text-lg font-extrabold text-slate-900">
+            Diagnostic results ({formatDate(parsedDiagnostic.taken_at.getTime())})
+          </h2>
+
+          <p className="mt-2 text-sm text-slate-600">
+            Overall Accuracy: {Math.round(parsedDiagnostic.overall_accuracy)}%
+          </p>
+
+          <div className="mt-4 space-y-2">
+            {Object.entries(parsedDiagnostic.category_performance).map(([cat, val]) => (
+              <div key={cat} className="flex justify-between text-sm">
+                <span>{cat.toUpperCase()}</span>
+                <span>{Math.round(Number(val))}%</span>
+              </div>
+            ))}
+          </div>
+        </SurfaceCard>
+      </div>
+    )}
+  
   const progress = progressResult.rows[0] ?? null;
   const answerHistory = parseAnswerHistory(progress?.answer_history);
   const totalAnswered = answerHistory.length;
   const totalCorrect = answerHistory.filter((record) => record.isCorrect).length;
   const totalAccuracy =
     totalAnswered === 0 ? 0 : Math.round((totalCorrect / totalAnswered) * 100);
-  const questionLookup = new Map(questions.map((question) => [question.id, question]));
+  const questionLookup = new Map(questions.map((question) => [question.id, question])); 
 
   const sectionStats = (Object.keys(categoryLabels) as McatCategory[]).map((category) => {
     const sectionAnswers = answerHistory.filter((record) => record.category === category);
@@ -193,29 +230,7 @@ export default async function DashboardPage() {
           </p>
         </SurfaceCard>
       </div>
-      
-    {diagnostic && (
-      <div className="mb-6">
-        <SurfaceCard className="p-5">
-          <h2 className="text-lg font-extrabold text-slate-900">
-            Diagnostic results ({formatDate(diagnostic.taken_at.getTime())})
-          </h2>
 
-          <p className="mt-2 text-sm text-slate-600">
-            Overall Accuracy: {Math.round(diagnostic.overall_accuracy)}%
-          </p>
-
-          <div className="mt-4 space-y-2">
-            {Object.entries(diagnostic.category_performance).map(([cat, val]) => (
-              <div key={cat} className="flex justify-between text-sm">
-                <span>{cat.toUpperCase()}</span>
-                <span>{Math.round(Number(val))}%</span>
-          </div>
-          ))}
-        </div>
-        </SurfaceCard>
-      </div>
-   )}
       
       <div className="grid gap-6 lg:grid-cols-[1fr_1.15fr]">
         <SurfaceCard className="p-5">
